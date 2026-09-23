@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="avo-skin" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532D" />
+      <stop offset="100%" stop-color="#052E16" />
+    </linearGradient>
+    <radialGradient id="avo-flesh" cx="50%" cy="60%" r="55%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="55%" stop-color="#A3E635" />
+      <stop offset="85%" stop-color="#65A30D" />
+      <stop offset="100%" stop-color="#3F6212" />
+    </radialGradient>
+    <radialGradient id="avo-pit" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#A16207" />
+      <stop offset="50%" stop-color="#78350F" />
+      <stop offset="100%" stop-color="#451A03" />
+    </radialGradient>
+    <filter id="avo-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#052E16" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <!-- Half avocado sliced open -->
+  <!-- Outer skin rim -->
+  <path d="M60 20 C76 20, 92 48, 92 76 C92 94, 78 104, 60 104 C42 104, 28 94, 28 76 C28 48, 44 20, 60 20 Z"
+        fill="url(#avo-skin)" filter="url(#avo-shadow)" />
+  <!-- Creamy green flesh -->
+  <path d="M60 24 C73 24, 87 49, 87 75 C87 91, 75 100, 60 100 C45 100, 33 91, 33 75 C33 49, 47 24, 60 24 Z"
+        fill="url(#avo-flesh)" />
+  <!-- Glossy brown seed / pit -->
+  <circle cx="60" cy="74" r="18" fill="url(#avo-pit)" />
+  <ellipse cx="54" cy="68" rx="4" ry="7" fill="#FFFFFF" opacity="0.45" transform="rotate(-20 54 68)" />
+  <circle cx="55" cy="65" r="2" fill="#FFFFFF" opacity="0.8" />
+</svg>

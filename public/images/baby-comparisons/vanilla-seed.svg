@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="pod-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3E2723" />
+      <stop offset="40%" stop-color="#1B0F0B" />
+      <stop offset="100%" stop-color="#0D0705" />
+    </linearGradient>
+    <radialGradient id="v-spec" cx="40%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#8D6E63" />
+      <stop offset="100%" stop-color="#2D1B15" />
+    </radialGradient>
+  </defs>
+  <!-- Pod curved branch -->
+  <path d="M22 96 C36 82, 54 48, 86 26 C94 20, 102 20, 100 24 C84 56, 60 88, 30 102 C24 105, 20 100, 22 96 Z"
+        fill="url(#pod-grad)" />
+  <!-- Glistening seeds inside split pod -->
+  <path d="M42 78 C54 62, 70 45, 84 34" stroke="#5D4037" stroke-width="4" stroke-linecap="round" fill="none" />
+  <circle cx="48" cy="72" r="2.5" fill="#110A07" stroke="#8D6E63" stroke-width="0.5" />
+  <circle cx="56" cy="64" r="2" fill="#0D0705" stroke="#A1887F" stroke-width="0.5" />
+  <circle cx="62" cy="56" r="2.5" fill="#1A110D" stroke="#8D6E63" stroke-width="0.5" />
+  <circle cx="70" cy="48" r="2" fill="#0A0604" stroke="#BCAAA4" stroke-width="0.5" />
+  <circle cx="78" cy="40" r="2.2" fill="#180E0A" stroke="#8D6E63" stroke-width="0.5" />
+  <!-- Highlighting spark -->
+  <circle cx="55" cy="63" r="0.8" fill="#FFF" />
+  <circle cx="69" cy="47" r="0.8" fill="#FFF" />
+</svg>

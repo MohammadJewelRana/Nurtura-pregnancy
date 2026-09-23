@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="cab-skin" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#86EFAC" />
+      <stop offset="45%" stop-color="#22C55E" />
+      <stop offset="80%" stop-color="#15803D" />
+      <stop offset="100%" stop-color="#14532D" />
+    </radialGradient>
+    <filter id="cab-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#14532D" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Round layered cabbage head -->
+  <circle cx="60" cy="64" r="38" fill="url(#cab-skin)" filter="url(#cab-shadow)" />
+  <!-- Curved crinkled leaf edges & prominent veins -->
+  <path d="M30 46 C44 38, 72 38, 90 52" stroke="#DCFCE7" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.75" />
+  <path d="M26 66 C42 60, 68 56, 88 74" stroke="#DCFCE7" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65" />
+  <path d="M34 84 C50 76, 74 76, 88 88" stroke="#DCFCE7" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65" />
+  <!-- Center rosette leaf overlapping -->
+  <path d="M50 48 C66 46, 76 56, 72 70 C68 80, 52 82, 46 72 C42 62, 44 52, 50 48 Z" fill="#4ADE80" stroke="#16A34A" stroke-width="1.5" />
+</svg>

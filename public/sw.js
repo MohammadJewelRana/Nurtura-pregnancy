@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nurtura-cache-v1';
+const CACHE_NAME = 'nurtura-cache-v2';
 
 // Core routes and shell assets to pre-cache on install
 const PRECACHE_ASSETS = [

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="apple-skin" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FCA5A5" />
+      <stop offset="35%" stop-color="#EF4444" />
+      <stop offset="75%" stop-color="#B91C1C" />
+      <stop offset="100%" stop-color="#7F1D1D" />
+    </radialGradient>
+    <filter id="app-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#7F1D1D" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Leaf -->
+  <path d="M60 26 C76 12, 96 16, 102 22 C96 36, 80 38, 68 32 Z" fill="#22C55E" />
+  <!-- Stem -->
+  <path d="M58 32 C58 20, 66 12, 70 8" stroke="#78350F" stroke-width="3" stroke-linecap="round" fill="none" />
+  <!-- Apple body with top dip -->
+  <path d="M58 36 C68 32, 94 40, 94 68 C94 92, 76 100, 60 100 C44 100, 26 92, 26 68 C26 40, 50 32, 58 36 Z"
+        fill="url(#apple-skin)" filter="url(#app-shadow)" />
+  <!-- Top indentation cavity -->
+  <ellipse cx="58" cy="36" rx="8" ry="3" fill="#7F1D1D" />
+  <!-- Crisp highlight -->
+  <ellipse cx="42" cy="54" rx="7" ry="16" fill="#FFFFFF" opacity="0.45" transform="rotate(-20 42 54)" />
+  <circle cx="44" cy="46" r="3.5" fill="#FFFFFF" opacity="0.8" />
+</svg>

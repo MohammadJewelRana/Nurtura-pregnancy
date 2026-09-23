@@ -11,12 +11,11 @@ import {
   HeartPulse,
   Lightbulb,
   ShieldAlert,
-  Ruler,
-  Weight,
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 import { getWeekData } from '@/data/pregnancy-weeks/weeks-data';
+import { BabySizeComparison } from '@/components/common/BabySizeComparison';
 
 export function WeekByWeekView({ initialWeek }: { initialWeek?: number }) {
   const { t, language, formatNumber } = useLanguage();
@@ -49,7 +48,6 @@ export function WeekByWeekView({ initialWeek }: { initialWeek?: number }) {
     trimesterBadge = t.common.secondTrimester;
   }
 
-  const fruitName = language === 'bn' ? weekData.fruitComparisonBn : weekData.fruitComparisonEn;
   const devText = language === 'bn' ? weekData.babyDevelopmentBn : weekData.babyDevelopmentEn;
   const motherText = language === 'bn' ? weekData.motherChangesBn : weekData.motherChangesEn;
   const wellnessText = language === 'bn' ? weekData.wellnessTipBn : weekData.wellnessTipEn;
@@ -125,61 +123,28 @@ export function WeekByWeekView({ initialWeek }: { initialWeek?: number }) {
           transition={{ duration: 0.2 }}
           className="space-y-6"
         >
-          {/* Fruit & Growth Banner */}
-          <div className="p-6 rounded-2xl bg-navy-surface border border-navy-border shadow-premium">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 rounded-2xl bg-navy-elevated border border-navy-border flex items-center justify-center text-3xl shadow-subtle flex-shrink-0">
-                  🌱
-                </div>
-                <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-emerald block mb-0.5">
-                    {t.babyWeek.sizeComparison}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-text-primary tracking-tight">
-                    {fruitName}
-                  </h3>
-                  <p className="text-xs text-text-muted mt-0.5">
-                    {language === 'bn' ? weekData.babySizeBn : weekData.babySizeEn}
-                  </p>
-                </div>
-              </div>
-
-              {/* Measurements */}
-              <div className="flex items-center gap-6 p-4 rounded-xl bg-navy-elevated border border-navy-border">
-                <div className="flex items-center space-x-2.5">
-                  <div className="p-2 rounded-lg bg-navy-surface text-emerald">
-                    <Ruler className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-text-muted block uppercase font-medium">{t.dashboard.approxLength}</span>
-                    <span className="text-sm font-bold text-text-primary">
-                      ~{formatNumber(weekData.approxLengthCm)} cm
-                    </span>
-                  </div>
-                </div>
-
-                <div className="w-px h-8 bg-navy-border" />
-
-                <div className="flex items-center space-x-2.5">
-                  <div className="p-2 rounded-lg bg-navy-surface text-emerald-accent">
-                    <Weight className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] text-text-muted block uppercase font-medium">{t.dashboard.approxWeight}</span>
-                    <span className="text-sm font-bold text-text-primary">
-                      ~{formatNumber(weekData.approxWeightGrams)} g
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Real-World Baby Size Comparison Hero Card */}
+          <div className="space-y-4">
+            <BabySizeComparison
+              week={selectedWeek}
+              variant="prominent"
+              showMeasurements={true}
+            />
 
             {/* Milestone Badge */}
-            <div className="mt-5 pt-4 border-t border-navy-border flex items-center space-x-2 text-xs font-semibold text-emerald-soft">
-              <Sparkles className="w-4 h-4 text-emerald flex-shrink-0" />
-              <span>{milestoneText}</span>
-            </div>
+            {milestoneText && (
+              <div className="p-4 rounded-xl bg-navy-surface border border-navy-border flex items-center space-x-3 text-xs sm:text-sm font-medium text-text-primary shadow-subtle">
+                <div className="p-2 rounded-lg bg-emerald/10 border border-emerald/20 flex-shrink-0 text-emerald">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald block">
+                    {language === 'bn' ? 'সাপ্তাহিক মাইলফলক' : 'Weekly Milestone'}
+                  </span>
+                  <span className="font-semibold text-text-primary">{milestoneText}</span>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Development Details Grid */}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="gf-skin" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FED7AA" />
+      <stop offset="35%" stop-color="#FB923C" />
+      <stop offset="70%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#9F1239" />
+    </radialGradient>
+    <filter id="gf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#881337" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Stem & small leaf -->
+  <path d="M66 26 C78 16, 92 18, 98 22 C94 32, 82 34, 72 30 Z" fill="#15803D" />
+  <path d="M60 28 C60 20, 64 14, 66 10" stroke="#78350F" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <!-- Large round grapefruit -->
+  <circle cx="60" cy="66" r="38" fill="url(#gf-skin)" filter="url(#gf-shadow)" />
+  <!-- Citrus rind dimple textures -->
+  <circle cx="48" cy="48" r="1.5" fill="#FFFFFF" opacity="0.6" />
+  <circle cx="56" cy="44" r="1.5" fill="#FFFFFF" opacity="0.5" />
+  <circle cx="44" cy="58" r="1.5" fill="#FFFFFF" opacity="0.5" />
+  <!-- Gloss shine -->
+  <ellipse cx="46" cy="52" rx="8" ry="16" fill="#FFFFFF" opacity="0.35" transform="rotate(-25 46 52)" />
+</svg>

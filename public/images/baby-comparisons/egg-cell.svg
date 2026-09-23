@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="egg-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00C99A" stop-opacity="0.3" />
+      <stop offset="60%" stop-color="#00E5AE" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#00C99A" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="zona" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#A7F3D0" />
+      <stop offset="40%" stop-color="#34D399" />
+      <stop offset="85%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#064E3B" />
+    </radialGradient>
+    <radialGradient id="nucleus" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#FDE047" />
+      <stop offset="80%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </radialGradient>
+    <filter id="egg-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#059669" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Ambient field -->
+  <circle cx="60" cy="60" r="54" fill="url(#egg-glow)" />
+  <!-- Corona Radiata halo ring -->
+  <circle cx="60" cy="60" r="44" stroke="#34D399" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.6" fill="none" />
+  <!-- Zona Pellucida membrane -->
+  <circle cx="60" cy="60" r="38" fill="url(#zona)" filter="url(#egg-shadow)" />
+  <!-- Cytoplasm ring -->
+  <circle cx="60" cy="60" r="32" fill="#065F46" opacity="0.5" />
+  <!-- Cell Nucleus -->
+  <circle cx="56" cy="56" r="16" fill="url(#nucleus)" />
+  <circle cx="52" cy="52" r="4" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="64" cy="62" r="2.5" fill="#FEF08A" opacity="0.9" />
+</svg>

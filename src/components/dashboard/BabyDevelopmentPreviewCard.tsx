@@ -6,6 +6,7 @@ import { ArrowRight, Ruler, Weight, Baby, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 import { getWeekData } from '@/data/pregnancy-weeks/weeks-data';
+import { BabySizeComparison } from '@/components/common/BabySizeComparison';
 
 export function BabyDevelopmentPreviewCard() {
   const { t, language, formatNumber } = useLanguage();
@@ -42,13 +43,11 @@ export function BabyDevelopmentPreviewCard() {
 
       {/* Fruit Comparison & Measurements Panel */}
       <div className="p-4 rounded-xl bg-navy-elevated border border-navy-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-navy-surface flex items-center justify-center text-xl shadow-subtle border border-navy-border">
-            🌱
-          </div>
+        <div className="flex items-center space-x-3.5">
+          <BabySizeComparison week={currentWeekNum} variant="compact" />
           <div>
             <span className="text-[10px] uppercase tracking-wider text-text-muted font-bold block">
-              {language === 'bn' ? 'তুলনামূলক আকার' : 'Size Comparison'}
+              {language === 'bn' ? 'বাস্তব আকারের তুলনা' : 'Size Comparison'}
             </span>
             <span className="text-sm sm:text-base font-bold text-text-primary">
               {fruitName}

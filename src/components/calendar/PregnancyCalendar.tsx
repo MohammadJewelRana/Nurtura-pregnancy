@@ -18,6 +18,7 @@ import { usePregnancy } from '@/context/PregnancyContext';
 import { calculateDateOnCalendar } from '@/lib/pregnancy/pregnancy-calculator';
 import { getTodayDate } from '@/lib/date/date-utils';
 import { getWeekData } from '@/data/pregnancy-weeks/weeks-data';
+import { BabySizeComparison } from '@/components/common/BabySizeComparison';
 
 export function PregnancyCalendar() {
   const { t, language, formatDate, formatNumber } = useLanguage();
@@ -186,17 +187,20 @@ export function PregnancyCalendar() {
               </div>
 
               {weekData && (
-                <div className="p-4 rounded-xl bg-navy-elevated border border-navy-border">
-                  <span className="text-emerald block mb-1 font-semibold flex items-center gap-1">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-accent" />
-                    {t.calendar.milestoneNotice}
-                  </span>
-                  <p className="text-text-secondary leading-relaxed">
-                    {language === 'bn' ? weekData.milestoneBn : weekData.milestoneEn}
-                  </p>
-                  <p className="mt-2 text-[11px] text-emerald font-bold">
-                    {language === 'bn' ? `তুলনা: ${weekData.fruitComparisonBn}` : `Size: ${weekData.fruitComparisonEn}`}
-                  </p>
+                <div className="p-4 rounded-xl bg-navy-elevated border border-navy-border flex items-start space-x-3.5">
+                  <BabySizeComparison week={selectedDateStats.week} variant="compact" />
+                  <div className="flex-1 min-w-0">
+                    <span className="text-emerald block mb-1 font-semibold flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-accent" />
+                      {t.calendar.milestoneNotice}
+                    </span>
+                    <p className="text-text-secondary leading-relaxed">
+                      {language === 'bn' ? weekData.milestoneBn : weekData.milestoneEn}
+                    </p>
+                    <p className="mt-2 text-[11px] text-emerald font-bold">
+                      {language === 'bn' ? `তুলনা: ${weekData.fruitComparisonBn}` : `Size: ${weekData.fruitComparisonEn}`}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

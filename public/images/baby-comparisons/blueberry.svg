@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="bb-skin" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#818CF8" />
+      <stop offset="35%" stop-color="#4F46E5" />
+      <stop offset="70%" stop-color="#312E81" />
+      <stop offset="100%" stop-color="#1E1B4B" />
+    </radialGradient>
+    <filter id="bb-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#1E1B4B" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <!-- Large main blueberry -->
+  <circle cx="58" cy="62" r="38" fill="url(#bb-skin)" filter="url(#bb-shadow)" />
+  <!-- Calyx crown indentation -->
+  <ellipse cx="58" cy="38" rx="14" ry="7" fill="#1E1B4B" />
+  <polygon points="58,33 62,37 66,32 65,38 71,38 66,41 68,46 63,43 59,47 57,41 52,44 54,39 49,37 54,36" fill="#312E81" stroke="#4338CA" stroke-width="0.8" />
+  <circle cx="58" cy="38" r="3.5" fill="#0F172A" />
+  <!-- Waxy bloom highlight -->
+  <path d="M38 52 C34 64, 40 78, 52 86" stroke="#A5B4FC" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.35" />
+  <circle cx="44" cy="48" r="3" fill="#E0E7FF" opacity="0.5" />
+</svg>

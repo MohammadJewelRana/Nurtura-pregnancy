@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="rom-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="45%" stop-color="#16A34A" />
+      <stop offset="100%" stop-color="#14532D" />
+    </linearGradient>
+    <filter id="rom-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#14532D" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Upright tall bunch of crisp romaine leaves -->
+  <g filter="url(#rom-shadow)">
+    <!-- Back leaves -->
+    <path d="M38 100 C30 70, 30 36, 46 16 C52 38, 52 76, 48 100 Z" fill="#15803D" />
+    <path d="M82 100 C90 70, 90 36, 74 16 C68 38, 68 76, 72 100 Z" fill="#15803D" />
+    <!-- Center tall leaves -->
+    <path d="M46 102 C44 64, 46 30, 60 14 C74 30, 76 64, 74 102 Z" fill="url(#rom-grad)" />
+    <!-- White thick center rib -->
+    <path d="M60 102 C60 76, 60 52, 60 30" stroke="#DCFCE7" stroke-width="4" stroke-linecap="round" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="pea-pod" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86EFAC" />
+      <stop offset="45%" stop-color="#22C55E" />
+      <stop offset="100%" stop-color="#15803D" />
+    </linearGradient>
+    <radialGradient id="pea-ball" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#BBF7D0" />
+      <stop offset="40%" stop-color="#4ADE80" />
+      <stop offset="90%" stop-color="#16A34A" />
+      <stop offset="100%" stop-color="#14532D" />
+    </radialGradient>
+    <filter id="pea-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#14532D" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Pea pod shell behind -->
+  <path d="M18 92 C32 94, 60 96, 94 66 C102 58, 108 42, 104 36 C98 34, 82 46, 62 60 C38 76, 22 84, 18 92 Z"
+        fill="url(#pea-pod)" filter="url(#pea-shadow)" />
+  <!-- 3 plump sweet peas in pod -->
+  <circle cx="48" cy="74" r="13" fill="url(#pea-ball)" />
+  <circle cx="44" cy="70" r="3" fill="#FFF" opacity="0.6" />
+  
+  <circle cx="68" cy="60" r="12" fill="url(#pea-ball)" />
+  <circle cx="64" cy="56" r="3" fill="#FFF" opacity="0.6" />
+
+  <circle cx="86" cy="46" r="10.5" fill="url(#pea-ball)" />
+  <circle cx="83" cy="43" r="2.5" fill="#FFF" opacity="0.6" />
+
+  <!-- Pod calyx stem -->
+  <path d="M18 92 C14 96, 12 102, 10 106" stroke="#166534" stroke-width="3" stroke-linecap="round" fill="none" />
+</svg>

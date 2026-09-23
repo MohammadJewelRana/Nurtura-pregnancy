@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="peach-skin" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FED7AA" />
+      <stop offset="35%" stop-color="#FB923C" />
+      <stop offset="70%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#BE123C" />
+    </radialGradient>
+    <filter id="pch-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#881337" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <!-- Fresh leaf -->
+  <path d="M58 26 C76 12, 98 16, 102 24 C96 38, 80 40, 66 34 Z" fill="#22C55E" />
+  <path d="M66 34 C80 26, 92 22, 102 24" stroke="#15803D" stroke-width="1" fill="none" />
+  <!-- Stem -->
+  <path d="M54 32 C52 20, 56 14, 58 10" stroke="#78350F" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <!-- Peach heart shape -->
+  <path d="M56 34 C72 30, 92 46, 92 68 C92 90, 76 98, 60 98 C44 98, 28 90, 28 68 C28 46, 44 30, 56 34 Z"
+        fill="url(#peach-skin)" filter="url(#pch-shadow)" />
+  <!-- Indented cleft groove -->
+  <path d="M56 34 C52 50, 52 74, 58 96" stroke="#9F1239" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.45" />
+  <!-- Soft velvety peach blush highlight -->
+  <circle cx="46" cy="52" r="14" fill="#FFEDD5" opacity="0.4" />
+  <circle cx="44" cy="48" r="4" fill="#FFFFFF" opacity="0.6" />
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="wm-skin-full" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#4ADE80" />
+      <stop offset="45%" stop-color="#16A34A" />
+      <stop offset="80%" stop-color="#15803D" />
+      <stop offset="100%" stop-color="#052E16" />
+    </radialGradient>
+    <filter id="wm-shadow-full" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="7" stdDeviation="7" flood-color="#052E16" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <!-- Curly green vine tendril -->
+  <path d="M60 24 C60 14, 66 8, 72 6" stroke="#166534" stroke-width="3.5" stroke-linecap="round" fill="none" />
+  <path d="M70 8 C78 6, 84 12, 82 18 C80 24, 74 26, 76 30" stroke="#22C55E" stroke-width="2" stroke-linecap="round" fill="none" />
+  <!-- Large grand oval watermelon body -->
+  <ellipse cx="60" cy="66" rx="38" ry="42" fill="url(#wm-skin-full)" filter="url(#wm-shadow-full)" />
+  <!-- Prominent dark jagged wavy stripes -->
+  <g stroke="#052E16" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8">
+    <path d="M60 24 Q66 45 58 66 Q66 88 60 108" />
+    <path d="M60 24 Q78 45 74 66 Q80 88 60 108" />
+    <path d="M60 24 Q42 45 46 66 Q40 88 60 108" />
+    <path d="M60 24 Q92 48 88 68 Q90 88 60 108" />
+    <path d="M60 24 Q28 48 32 68 Q30 88 60 108" />
+  </g>
+  <!-- Bright gloss reflection -->
+  <ellipse cx="44" cy="50" rx="7" ry="16" fill="#FFFFFF" opacity="0.4" transform="rotate(-20 44 50)" />
+  <circle cx="46" cy="44" r="3.5" fill="#FFFFFF" opacity="0.75" />
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="cant-skin" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#D9F99D" />
+      <stop offset="45%" stop-color="#84CC16" />
+      <stop offset="85%" stop-color="#4D7C0F" />
+      <stop offset="100%" stop-color="#14532D" />
+    </radialGradient>
+    <filter id="cnt-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#14532D" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <!-- Top stem nub -->
+  <path d="M60 28 C60 22, 62 16, 64 12" stroke="#78350F" stroke-width="3" stroke-linecap="round" fill="none" />
+  <!-- Round melon body -->
+  <circle cx="60" cy="66" r="38" fill="url(#cant-skin)" filter="url(#cnt-shadow)" />
+  <!-- Characteristic tan netted webbing pattern -->
+  <g stroke="#FEF08A" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.55">
+    <ellipse cx="60" cy="66" rx="36" ry="36" stroke-dasharray="3 4" />
+    <path d="M60 28 C74 42, 74 90, 60 104" />
+    <path d="M60 28 C46 42, 46 90, 60 104" />
+    <path d="M60 28 C86 46, 86 86, 60 104" />
+    <path d="M60 28 C34 46, 34 86, 60 104" />
+    <path d="M24 66 C40 54, 80 54, 96 66" />
+    <path d="M26 78 C42 66, 78 66, 94 78" />
+  </g>
+</svg>
