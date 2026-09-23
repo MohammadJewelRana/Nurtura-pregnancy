@@ -14,11 +14,13 @@ import {
   Heart,
   CheckCircle2,
   X,
+  Info,
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { NetworkBadge } from '../common/NetworkStatusIndicator';
 import { PregnancySetupForm } from '../pregnancy/PregnancySetupForm';
 import {
   exportAllData,
@@ -159,9 +161,12 @@ export function SettingsView() {
 
       {/* Preferences Card */}
       <div className="p-6 rounded-2xl bg-navy-surface border border-navy-border shadow-soft space-y-4">
-        <h3 className="text-base font-bold text-text-primary">
-          {t.settings.preferencesSection}
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-base font-bold text-text-primary">
+            {t.settings.preferencesSection}
+          </h3>
+          <NetworkBadge showText={true} />
+        </div>
 
         <div className="divide-y divide-navy-border/60 text-xs sm:text-sm">
           {/* Language preference */}
@@ -200,6 +205,14 @@ export function SettingsView() {
         <p className="text-xs text-text-secondary leading-relaxed">
           {t.settings.storageExplanation}
         </p>
+
+        {/* Local Storage & Backup Notice */}
+        <div className="p-3.5 rounded-xl bg-navy-elevated border border-navy-border/80 flex items-start space-x-2.5 text-xs text-text-secondary">
+          <Info className="w-4 h-4 text-emerald flex-shrink-0 mt-0.5" />
+          <p className="leading-relaxed">
+            {t.common.dataStorageNotice}
+          </p>
+        </div>
 
         {importStatus && (
           <div

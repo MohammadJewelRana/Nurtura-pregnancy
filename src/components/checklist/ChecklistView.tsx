@@ -14,9 +14,13 @@ import { DEFAULT_CHECKLISTS, DEFAULT_HOSPITAL_BAG } from '@/data/checklists/defa
 
 type ActiveView = 'trimesters' | 'hospital';
 
-export function ChecklistView() {
+interface ChecklistViewProps {
+  initialView?: ActiveView;
+}
+
+export function ChecklistView({ initialView = 'trimesters' }: ChecklistViewProps) {
   const { t, language, formatNumber } = useLanguage();
-  const [activeView, setActiveView] = useState<ActiveView>('trimesters');
+  const [activeView, setActiveView] = useState<ActiveView>(initialView);
   const [checklists, setChecklists] = useState<ChecklistItem[]>([]);
   const [hospitalBag, setHospitalBag] = useState<HospitalBagItem[]>([]);
   const [newTitle, setNewTitle] = useState('');

@@ -44,6 +44,13 @@ export const en = {
     importData: "Import Data",
     clearData: "Clear All Data",
     clearConfirm: "Are you sure you want to delete all saved data on this device? This cannot be undone.",
+    networkOnline: "Online",
+    networkOffline: "Offline — Your data is saved on this device",
+    networkBackOnline: "Back online",
+    networkOfflineBanner: "You're offline. Nurtura is using your saved data.",
+    dataStorageNotice: "Your data is stored locally on this device. Clearing browser/app data may remove it. Use Export Data to keep a backup.",
+    newVersionAvailable: "A new update is available.",
+    updateApp: "Update",
   },
 
   nav: {

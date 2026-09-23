@@ -1,12 +1,15 @@
 {
+  "id": "/",
   "name": "Nurtura – Pregnancy Companion",
   "short_name": "Nurtura",
-  "description": "Your private, bilingual pregnancy tracker and due date companion.",
+  "description": "Your private, bilingual offline-first pregnancy companion and due date calculator.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#07111F",
-  "theme_color": "#00C99A",
-  "orientation": "portrait",
+  "theme_color": "#07111F",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle", "medical"],
   "icons": [
     {
       "src": "/icon.svg",

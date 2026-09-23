@@ -12,40 +12,49 @@ import {
   Settings,
   ChevronRight,
   ShieldCheck,
+  Calculator,
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { NetworkBadge } from '../common/NetworkStatusIndicator';
 
 export function MoreNavHub() {
   const { t, language } = useLanguage();
 
   const links = [
     {
+      href: '/calculator',
+      label: language === 'bn' ? 'প্রসব তারিখ ক্যালকুলেটর' : 'Due Date Calculator',
+      desc: language === 'bn' ? 'LMP ও আল্ট্রাসাউন্ড হিসাব বিশ্লেষণ' : 'LMP & Ultrasound EDD analysis',
+      icon: Calculator,
+      iconColor: 'text-emerald',
+    },
+    {
       href: '/journal',
       label: t.nav.journal,
       desc: t.journal.subtitle,
       icon: BookOpen,
-      iconColor: 'text-emerald',
+      iconColor: 'text-emerald-accent',
     },
     {
       href: '/appointments',
       label: t.nav.appointments,
       desc: t.appointments.subtitle,
       icon: CalendarDays,
-      iconColor: 'text-emerald-accent',
+      iconColor: 'text-emerald-soft',
     },
     {
       href: '/checklist',
       label: t.nav.checklists,
       desc: t.checklists.subtitle,
       icon: CheckSquare,
-      iconColor: 'text-emerald-soft',
+      iconColor: 'text-emerald',
     },
     {
-      href: '/checklist?tab=hospital',
+      href: '/hospital-bag',
       label: t.checklists.tabHospital,
       desc: language === 'bn' ? 'হাসপাতালের জন্য প্রয়োজনীয় জিনিসপত্রের তালিকা' : 'Complete hospital delivery bag packing list',
       icon: Luggage,
-      iconColor: 'text-emerald',
+      iconColor: 'text-emerald-accent',
     },
     {
       href: '/names',
@@ -72,15 +81,18 @@ export function MoreNavHub() {
 
   return (
     <div className="space-y-6 animate-in fade-in-50 duration-200">
-      <div>
-        <h1 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
-          {t.nav.more}
-        </h1>
-        <p className="text-xs sm:text-sm text-text-muted mt-1">
-          {language === 'bn'
-            ? 'আপনার গর্ভকালীন সকল প্রয়োজনীয় ফিচার ও সেটিংস।'
-            : 'Explore all tools and features of your pregnancy companion.'}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
+            {t.nav.more}
+          </h1>
+          <p className="text-xs sm:text-sm text-text-muted mt-1">
+            {language === 'bn'
+              ? 'আপনার গর্ভকালীন সকল প্রয়োজনীয় ফিচার ও সেটিংস।'
+              : 'Explore all tools and features of your pregnancy companion.'}
+          </p>
+        </div>
+        <NetworkBadge showText={true} />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">

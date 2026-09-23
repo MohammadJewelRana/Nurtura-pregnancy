@@ -22,6 +22,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { NurturaLogo } from '../common/NurturaLogo';
+import { NetworkBadge } from '../common/NetworkStatusIndicator';
 
 export function DesktopHeader() {
   const pathname = usePathname();
@@ -161,8 +162,9 @@ export function DesktopHeader() {
             </div>
           </nav>
 
-          {/* Controls: Language & Theme */}
-          <div className="flex items-center space-x-2">
+          {/* Controls: Network Badge, Language & Theme */}
+          <div className="flex items-center space-x-2.5">
+            <NetworkBadge showText={true} />
             <LanguageSwitcher />
             <ThemeToggle />
           </div>

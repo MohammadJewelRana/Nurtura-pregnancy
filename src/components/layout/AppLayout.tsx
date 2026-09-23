@@ -9,6 +9,7 @@ import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { NurturaLogo } from '../common/NurturaLogo';
 import { BrandedSplashScreen } from '../common/BrandedSplashScreen';
+import { NetworkStatusBanner, NetworkBadge } from '../common/NetworkStatusIndicator';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 
@@ -21,14 +22,20 @@ export function AppLayout({ children }: { children: ReactNode }) {
       {/* Branded Splash Screen during client-side hydration / storage initialization */}
       <BrandedSplashScreen isLoading={!isInitialized} />
 
+      {/* Network Offline / Back Online Toast Banner */}
+      <NetworkStatusBanner />
+
       {/* Desktop Header with Primary Navigation Only */}
       <DesktopHeader />
 
       {/* Mobile Top Bar */}
       <div className="md:hidden sticky top-0 z-40 bg-navy-bg/95 backdrop-blur-md border-b border-navy-border px-4 py-2.5 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <NurturaLogo size="sm" showWordmark={true} />
-        </Link>
+        <div className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center">
+            <NurturaLogo size="sm" showWordmark={true} />
+          </Link>
+          <NetworkBadge />
+        </div>
         <div className="flex items-center space-x-1.5">
           <LanguageSwitcher />
           <ThemeToggle />
