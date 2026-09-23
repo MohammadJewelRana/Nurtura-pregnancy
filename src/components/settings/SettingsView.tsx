@@ -22,6 +22,7 @@ import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { NetworkBadge } from '../common/NetworkStatusIndicator';
 import { PregnancySetupForm } from '../pregnancy/PregnancySetupForm';
+import { ParentPhotoUpload } from '../common/ParentPhotoUpload';
 import {
   exportAllData,
   importAllData,
@@ -30,7 +31,15 @@ import {
 
 export function SettingsView() {
   const { t, formatDate, language } = useLanguage();
-  const { profile, calculation, refreshData } = usePregnancy();
+  const {
+    profile,
+    calculation,
+    parentPhotos,
+    updateParentPhoto,
+    removeParentPhoto,
+    clearProfile,
+    refreshData,
+  } = usePregnancy();
 
   const [showEditDates, setShowEditDates] = useState(false);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -73,7 +82,8 @@ export function SettingsView() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const handleConfirmClear = () => {
+  const handleConfirmClear = async () => {
+    await clearProfile();
     clearAllLocalData();
     refreshData();
     setShowClearConfirm(false);
@@ -157,6 +167,42 @@ export function SettingsView() {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Parent Photos Management Card */}
+      <div className="p-6 rounded-2xl bg-navy-surface border border-navy-border shadow-soft space-y-4">
+        <div className="flex items-center space-x-2 text-emerald">
+          <Heart className="w-5 h-5 fill-emerald/20 text-emerald" />
+          <h3 className="text-base font-bold text-text-primary">
+            {t.parentPhotos.sectionTitle}
+          </h3>
+        </div>
+
+        <p className="text-xs text-text-secondary leading-relaxed">
+          {t.parentPhotos.sectionSubtitle}
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <ParentPhotoUpload
+            type="mother"
+            label={t.parentPhotos.motherLabel}
+            photoUrl={parentPhotos.mother}
+            onUpload={(dataUrl) => updateParentPhoto('mother', dataUrl)}
+            onRemove={() => removeParentPhoto('mother')}
+          />
+          <ParentPhotoUpload
+            type="father"
+            label={t.parentPhotos.fatherLabel}
+            photoUrl={parentPhotos.father}
+            onUpload={(dataUrl) => updateParentPhoto('father', dataUrl)}
+            onRemove={() => removeParentPhoto('father')}
+          />
+        </div>
+
+        <div className="p-3 rounded-xl bg-navy-elevated border border-navy-border text-[11px] text-text-muted flex items-center space-x-2">
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald flex-shrink-0" />
+          <span>{t.parentPhotos.offlineNote}</span>
+        </div>
       </div>
 
       {/* Preferences Card */}

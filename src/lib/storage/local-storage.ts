@@ -10,6 +10,7 @@ import {
   HospitalBagItem,
   Language,
 } from '@/types/pregnancy';
+import { clearAllParentPhotos, hasCachedParentPhoto } from './parent-photos';
 
 // Key mappings supporting both current Nurtura keys and backward-compatible legacy keys
 const STORAGE_KEYS = {
@@ -58,6 +59,10 @@ export interface AppExportData {
   checklists: ChecklistItem[];
   hospitalBag: HospitalBagItem[];
   favoriteNames: string[];
+  parentPhotosMeta?: {
+    hasMotherPhoto: boolean;
+    hasFatherPhoto: boolean;
+  };
 }
 
 /**
@@ -302,6 +307,10 @@ export function exportAllData(): AppExportData {
     checklists: getSavedChecklists(),
     hospitalBag: getSavedHospitalBag(),
     favoriteNames: getFavoriteNames(),
+    parentPhotosMeta: {
+      hasMotherPhoto: hasCachedParentPhoto('mother'),
+      hasFatherPhoto: hasCachedParentPhoto('father'),
+    },
   };
 }
 
@@ -374,6 +383,11 @@ export function clearAllLocalData(): void {
       }
       memoryStore.delete(key);
     }
+
+    // Also clear parent photos from IndexedDB
+    clearAllParentPhotos().catch((err) => {
+      console.warn('Failed to clear parent photos on clearAllLocalData:', err);
+    });
 
     saveLanguage(currentLang);
   } catch (err) {

@@ -4,13 +4,28 @@ import React, { createContext, useContext, useState, useEffect, ReactNode, useCa
 import { PregnancyProfile, PregnancyCalculationResult } from '@/types/pregnancy';
 import { getSavedProfile, saveProfile } from '@/lib/storage/local-storage';
 import { calculatePregnancy } from '@/lib/pregnancy/pregnancy-calculator';
+import {
+  getParentPhoto,
+  saveParentPhoto,
+  deleteParentPhoto,
+  clearAllParentPhotos,
+  ParentPhotoType,
+} from '@/lib/storage/parent-photos';
+
+export interface ParentPhotosState {
+  mother: string | null;
+  father: string | null;
+}
 
 interface PregnancyContextProps {
   profile: PregnancyProfile | null;
   calculation: PregnancyCalculationResult;
   isInitialized: boolean;
+  parentPhotos: ParentPhotosState;
   updateProfile: (profile: PregnancyProfile) => void;
   clearProfile: () => void;
+  updateParentPhoto: (type: ParentPhotoType, dataUrl: string) => Promise<void>;
+  removeParentPhoto: (type: ParentPhotoType) => Promise<void>;
   refreshData: () => void;
 }
 
@@ -18,9 +33,14 @@ const PregnancyContext = createContext<PregnancyContextProps | undefined>(undefi
 
 export function PregnancyProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<PregnancyProfile | null>(null);
+  const [parentPhotos, setParentPhotos] = useState<ParentPhotosState>({
+    mother: null,
+    father: null,
+  });
   const [isInitialized, setIsInitialized] = useState(false);
 
   const loadData = useCallback(() => {
+    // 1. Synchronously/locally read profile from localStorage
     try {
       const saved = getSavedProfile();
       setProfile(saved);
@@ -28,6 +48,19 @@ export function PregnancyProvider({ children }: { children: ReactNode }) {
       console.warn('[PregnancyContext] Load profile error:', err);
     } finally {
       setIsInitialized(true);
+    }
+
+    // 2. Asynchronously load parent photos from IndexedDB without blocking the UI
+    if (typeof window !== 'undefined') {
+      Promise.allSettled([
+        getParentPhoto('mother'),
+        getParentPhoto('father'),
+      ]).then(([motherRes, fatherRes]) => {
+        setParentPhotos({
+          mother: motherRes.status === 'fulfilled' ? motherRes.value : null,
+          father: fatherRes.status === 'fulfilled' ? fatherRes.value : null,
+        });
+      });
     }
   }, []);
 
@@ -40,9 +73,31 @@ export function PregnancyProvider({ children }: { children: ReactNode }) {
     saveProfile(newProfile);
   };
 
-  const clearProfile = () => {
+  const clearProfile = async () => {
     setProfile(null);
     saveProfile(null);
+    setParentPhotos({ mother: null, father: null });
+    await clearAllParentPhotos();
+  };
+
+  const updateParentPhoto = async (type: ParentPhotoType, dataUrl: string) => {
+    // Immediate optimistic state update
+    setParentPhotos((prev) => ({
+      ...prev,
+      [type]: dataUrl,
+    }));
+    // Persist to IndexedDB
+    await saveParentPhoto(type, dataUrl);
+  };
+
+  const removeParentPhoto = async (type: ParentPhotoType) => {
+    // Immediate optimistic state update
+    setParentPhotos((prev) => ({
+      ...prev,
+      [type]: null,
+    }));
+    // Delete from IndexedDB
+    await deleteParentPhoto(type);
   };
 
   const calculation = calculatePregnancy(profile);
@@ -53,8 +108,11 @@ export function PregnancyProvider({ children }: { children: ReactNode }) {
         profile,
         calculation,
         isInitialized,
+        parentPhotos,
         updateProfile,
         clearProfile,
+        updateParentPhoto,
+        removeParentPhoto,
         refreshData: loadData,
       }}
     >

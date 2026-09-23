@@ -361,5 +361,18 @@ export const en = {
     errorFuture: "Date of birth cannot be in the future.",
     errorInvalid: "Please enter a valid date of birth.",
     helperText: "Calculated precisely using your local device calendar date, accounting for leap years and month lengths.",
-  }
+  },
+
+  parentPhotos: {
+    sectionTitle: "Parent & Family Photos",
+    sectionSubtitle: "Optional portrait photos to personalize your journey.",
+    motherLabel: "Mother Photo",
+    fatherLabel: "Father / Partner Photo",
+    uploadPhoto: "Upload Photo",
+    replacePhoto: "Replace",
+    removePhoto: "Remove",
+    journeyTitle: "Your Little Journey",
+    growingTogether: "Growing together",
+    offlineNote: "Photos are stored exclusively on this device in IndexedDB and never uploaded.",
+  },
 };

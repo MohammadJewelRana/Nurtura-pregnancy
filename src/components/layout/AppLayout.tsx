@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ShieldCheck, Phone, Mail, Sparkles } from 'lucide-react';
 import { DesktopHeader } from '../navigation/DesktopHeader';
@@ -12,16 +12,74 @@ import { BrandedSplashScreen } from '../common/BrandedSplashScreen';
 import { NetworkStatusBanner, NetworkBadge } from '../common/NetworkStatusIndicator';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
+import { runStorageMigration } from '@/lib/storage/local-storage';
+
+// Module-level guard: ensures splash runs once on initial browser launch/hard refresh
+// and never re-triggers or flickers during client-side route navigation.
+let hasAppInitializedSession = false;
+
+const BRANDING_DURATION_MS = 850;
+const HARD_SAFETY_TIMEOUT_MS = 2500;
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
   const { isInitialized } = usePregnancy();
+  const [isInitializing, setIsInitializing] = useState<boolean>(() => !hasAppInitializedSession);
+
+  useEffect(() => {
+    if (hasAppInitializedSession) {
+      setIsInitializing(false);
+      return;
+    }
+
+    let isMounted = true;
+
+    // Hard safety timeout: guarantees splash ALWAYS dismisses within 2.5s maximum
+    const safetyTimer = setTimeout(() => {
+      hasAppInitializedSession = true;
+      if (isMounted) {
+        setIsInitializing(false);
+      }
+    }, HARD_SAFETY_TIMEOUT_MS);
+
+    const initializeApp = async () => {
+      try {
+        const localTasks = [
+          Promise.resolve().then(() => runStorageMigration()).catch(() => {}),
+        ];
+
+        const brandingTimer = new Promise<void>((resolve) =>
+          setTimeout(resolve, BRANDING_DURATION_MS)
+        );
+
+        // Promise.allSettled guarantees one rejected promise never blocks the app
+        await Promise.allSettled([...localTasks, brandingTimer]);
+      } catch (err) {
+        console.warn('[Nurtura] App init warning:', err);
+      } finally {
+        clearTimeout(safetyTimer);
+        hasAppInitializedSession = true;
+        if (isMounted) {
+          setIsInitializing(false);
+        }
+      }
+    };
+
+    initializeApp();
+
+    return () => {
+      isMounted = false;
+      clearTimeout(safetyTimer);
+    };
+  }, []);
+
+  // Single source of truth: display splash screen while initializing
+  if (isInitializing) {
+    return <BrandedSplashScreen />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-navy-bg text-text-primary transition-colors">
-      {/* Branded Splash Screen with guaranteed 800ms auto-transition and safety fallback */}
-      <BrandedSplashScreen />
-
       {/* Network Offline / Back Online Toast Banner */}
       <NetworkStatusBanner />
 
@@ -61,45 +119,39 @@ export function AppLayout({ children }: { children: ReactNode }) {
               </div>
             </div>
 
-            {/* Developer Contact Info */}
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[11px] text-text-muted">
-              <span>Developed by <strong className="text-text-secondary font-medium">Md. Jewel Rana</strong> — Software Engineer</span>
-              <span className="text-navy-border hidden sm:inline">•</span>
-              <div className="flex items-center space-x-3">
-                <a
-                  href="tel:01533850435"
-                  className="inline-flex items-center space-x-1 text-text-secondary hover:text-emerald transition"
-                  aria-label="Call Md. Jewel Rana"
-                >
-                  <Phone className="w-3 h-3 text-emerald" />
-                  <span>01533850435</span>
-                </a>
-                <span className="text-navy-border">•</span>
-                <a
-                  href="mailto:js.rana0326@gmail.com"
-                  className="inline-flex items-center space-x-1 text-text-secondary hover:text-emerald transition"
-                  aria-label="Email Md. Jewel Rana"
-                >
-                  <Mail className="w-3 h-3 text-emerald" />
-                  <span>js.rana0326@gmail.com</span>
-                </a>
-              </div>
+            {/* Quick Links & Emergency Note */}
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-5 gap-y-2 text-text-secondary">
+              <Link href="/faq" className="hover:text-emerald transition">
+                {t.nav.faq}
+              </Link>
+              <Link href="/checklist" className="hover:text-emerald transition">
+                {t.nav.checklists}
+              </Link>
+              <Link href="/hospital-bag" className="hover:text-emerald transition">
+                {t.nav.hospitalBag}
+              </Link>
+              <Link href="/names" className="hover:text-emerald transition">
+                {t.nav.names}
+              </Link>
+              <Link href="/settings" className="hover:text-emerald transition">
+                {t.nav.settings}
+              </Link>
             </div>
           </div>
 
-          {/* Medical disclaimer note & copyright */}
-          <div className="border-t border-navy-border/50 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-text-muted">
-            <p className="max-w-xl text-center sm:text-left opacity-80 leading-relaxed">
+          {/* Medical Disclaimer Banner */}
+          <div className="pt-4 border-t border-navy-border/50 text-[11px] text-text-muted leading-relaxed text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p className="max-w-3xl">
               {t.common.disclaimerText}
             </p>
-            <p className="flex-shrink-0 text-center sm:text-right opacity-80">
-              © 2026 Nurtura. All rights reserved.
-            </p>
+            <span className="text-[10px] text-text-muted/60 whitespace-nowrap">
+              © {new Date().getFullYear()} Nurtura. All rights reserved.
+            </span>
           </div>
         </div>
       </footer>
 
-      {/* Mobile Fixed Bottom Navigation */}
+      {/* Mobile Bottom Navigation Bar */}
       <MobileBottomNav />
     </div>
   );

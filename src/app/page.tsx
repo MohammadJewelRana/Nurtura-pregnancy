@@ -11,6 +11,7 @@ import { DueDateCountdownCard } from '@/components/dashboard/DueDateCountdownCar
 import { BabyDevelopmentPreviewCard } from '@/components/dashboard/BabyDevelopmentPreviewCard';
 import { DashboardQuickActions } from '@/components/dashboard/DashboardQuickActions';
 import { UpcomingAppointmentPreview } from '@/components/dashboard/UpcomingAppointmentPreview';
+import { ParentJourneyHero } from '@/components/dashboard/ParentJourneyHero';
 import { NurturaLogo } from '@/components/common/NurturaLogo';
 
 export default function HomePage() {
@@ -101,6 +102,9 @@ export default function HomePage() {
       <div className="pt-1">
         <DashboardQuickActions />
       </div>
+
+      {/* 5. Parent / Family Visual Touch (renders only when parent photos exist) */}
+      <ParentJourneyHero />
 
       {/* 8. Row 4: Discreet Useful Pregnancy Information / Reassurance */}
       <div className="rounded-2xl bg-navy-surface border border-navy-border p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

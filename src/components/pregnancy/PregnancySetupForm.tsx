@@ -8,6 +8,7 @@ import { PregnancyProfile } from '@/types/pregnancy';
 import { calculatePregnancy } from '@/lib/pregnancy/pregnancy-calculator';
 import { getTodayDate, toDateString, parseLocalDate } from '@/lib/date/date-utils';
 import { NurturaLogo } from '../common/NurturaLogo';
+import { ParentPhotoUpload } from '../common/ParentPhotoUpload';
 
 interface SetupFormProps {
   onCompleted?: () => void;
@@ -16,7 +17,7 @@ interface SetupFormProps {
 
 export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormProps) {
   const { t, language, formatDate, formatNumber } = useLanguage();
-  const { profile, updateProfile } = usePregnancy();
+  const { profile, updateProfile, parentPhotos, updateParentPhoto, removeParentPhoto } = usePregnancy();
 
   // Mode: 'edd' | 'lmp' | 'both'
   const initialMode = profile?.doctorEdd && profile?.lmpDate
@@ -241,6 +242,35 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
             </div>
           </div>
         )}
+
+        {/* Parent / Family Photos (Optional) */}
+        <div className="pt-3 border-t border-navy-border/60 space-y-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald block">
+              {t.parentPhotos.sectionTitle}
+            </span>
+            <p className="text-[11px] text-text-muted mt-0.5">
+              {t.parentPhotos.sectionSubtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <ParentPhotoUpload
+              type="mother"
+              label={t.parentPhotos.motherLabel}
+              photoUrl={parentPhotos.mother}
+              onUpload={(dataUrl) => updateParentPhoto('mother', dataUrl)}
+              onRemove={() => removeParentPhoto('mother')}
+            />
+            <ParentPhotoUpload
+              type="father"
+              label={t.parentPhotos.fatherLabel}
+              photoUrl={parentPhotos.father}
+              onUpload={(dataUrl) => updateParentPhoto('father', dataUrl)}
+              onRemove={() => removeParentPhoto('father')}
+            />
+          </div>
+        </div>
 
         <button
           type="submit"
