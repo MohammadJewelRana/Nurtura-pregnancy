@@ -86,7 +86,7 @@ export function AppointmentsView() {
 
         <button
           onClick={() => setShowAddForm(true)}
-          className="px-4 py-2.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft flex items-center space-x-1.5 transition self-start sm:self-center"
+          className="px-4 py-2.5 rounded-2xl bg-plum-800 hover:bg-plum-900 text-white text-xs font-semibold shadow-soft flex items-center space-x-1.5 transition self-start sm:self-center"
         >
           <Plus className="w-4 h-4" />
           <span>{t.appointments.newAppt}</span>
@@ -95,15 +95,15 @@ export function AppointmentsView() {
 
       {/* Add Appointment Modal/Form */}
       {showAddForm && (
-        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-200 dark:border-charcoal-700 shadow-soft-lg space-y-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-700 shadow-soft space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-charcoal-900 dark:text-white flex items-center gap-2">
-              <CalendarDays className="w-4 h-4 text-rose-500" />
+              <CalendarDays className="w-4 h-4 text-plum-800 dark:text-dustyRose-400" />
               <span>{t.appointments.newAppt}</span>
             </h3>
             <button
               onClick={() => setShowAddForm(false)}
-              className="p-1 rounded-lg text-charcoal-400 hover:text-charcoal-700"
+              className="p-1 rounded-lg text-charcoal-400 hover:text-charcoal-700 dark:hover:text-charcoal-200"
             >
               <X className="w-4 h-4" />
             </button>
@@ -121,7 +121,7 @@ export function AppointmentsView() {
                   placeholder={language === 'bn' ? 'যেমন: ডা. ফারহানা চৌধুরী' : 'e.g. Dr. Emily Watson'}
                   value={doctorName}
                   onChange={(e) => setDoctorName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
 
@@ -134,7 +134,7 @@ export function AppointmentsView() {
                   placeholder={language === 'bn' ? 'যেমন: স্কয়ার হাসপাতাল' : 'e.g. City Hospital / Women Clinic'}
                   value={clinicName}
                   onChange={(e) => setClinicName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
 
@@ -147,7 +147,7 @@ export function AppointmentsView() {
                   required
                   value={apptDate}
                   onChange={(e) => setApptDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export function AppointmentsView() {
                   type="time"
                   value={apptTime}
                   onChange={(e) => setApptTime(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
             </div>
@@ -173,7 +173,7 @@ export function AppointmentsView() {
                 placeholder={language === 'bn' ? 'আল্ট্রাসাউন্ড স্ক্যান বা কোনো বিশেষ জিজ্ঞাসা...' : 'Routine scan or topics to discuss...'}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
               />
             </div>
 
@@ -181,13 +181,13 @@ export function AppointmentsView() {
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-rose-50"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-ivory-100 transition"
               >
                 {t.common.cancel}
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft transition"
+                className="px-5 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white text-xs font-semibold shadow-soft transition"
               >
                 {t.common.save}
               </button>
@@ -197,7 +197,7 @@ export function AppointmentsView() {
       )}
 
       {/* Upcoming Visits */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft">
+      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
         <h3 className="text-base font-bold text-charcoal-900 dark:text-white mb-4">
           {t.appointments.upcoming} ({upcomingList.length})
         </h3>
@@ -207,14 +207,14 @@ export function AppointmentsView() {
             {upcomingList.map((item) => (
               <div
                 key={item.id}
-                className="p-4 rounded-2xl bg-lavender-50/40 dark:bg-charcoal-800/60 border border-lavender-100 dark:border-charcoal-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
+                className="p-4 rounded-2xl bg-ivory-50/70 dark:bg-charcoal-800/60 border border-plum-100/60 dark:border-charcoal-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs"
               >
                 <div>
                   <h4 className="font-bold text-sm text-charcoal-900 dark:text-white mb-1">
                     {item.doctorName}
                   </h4>
                   <div className="flex flex-wrap items-center gap-3 text-charcoal-500 dark:text-charcoal-400">
-                    <span className="flex items-center gap-1 font-semibold text-rose-600 dark:text-rose-400">
+                    <span className="flex items-center gap-1 font-semibold text-plum-800 dark:text-dustyRose-400">
                       <Clock className="w-3.5 h-3.5" />
                       {formatDate(item.date)} {item.time ? `• ${item.time}` : ''}
                     </span>
@@ -258,12 +258,12 @@ export function AppointmentsView() {
 
       {/* Past Visits */}
       {pastList.length > 0 && (
-        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft">
+        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
           <h3 className="text-base font-bold text-charcoal-900 dark:text-white mb-4">
             {t.appointments.past} ({pastList.length})
           </h3>
 
-          <div className="divide-y divide-rose-50 dark:divide-charcoal-800">
+          <div className="divide-y divide-plum-50/50 dark:divide-charcoal-800">
             {pastList.map((item) => (
               <div key={item.id} className="py-3 flex items-center justify-between text-xs">
                 <div>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight, HeartHandshake, Baby as BabyIcon, Ruler, Weight } from 'lucide-react';
+import { ArrowRight, Sparkles, Ruler, Weight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 import { getWeekData } from '@/data/pregnancy-weeks/weeks-data';
@@ -13,112 +13,64 @@ export function BabyDevelopmentPreviewCard() {
 
   if (!calculation.isValid) return null;
 
-  const weekData = getWeekData(calculation.currentWeek || 1);
+  const currentWeekNum = calculation.currentWeek || 1;
+  const weekData = getWeekData(currentWeekNum);
   const fruitName = language === 'bn' ? weekData.fruitComparisonBn : weekData.fruitComparisonEn;
   const devText = language === 'bn' ? weekData.babyDevelopmentBn : weekData.babyDevelopmentEn;
-  const motherText = language === 'bn' ? weekData.motherChangesBn : weekData.motherChangesEn;
-  const wellnessText = language === 'bn' ? weekData.wellnessTipBn : weekData.wellnessTipEn;
 
   return (
-    <div className="rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft overflow-hidden">
-      {/* Header */}
-      <div className="p-5 sm:p-6 pb-4 border-b border-rose-50 dark:border-charcoal-800/80 flex items-center justify-between">
-        <div className="flex items-center space-x-2.5">
-          <div className="p-2.5 rounded-2xl bg-rose-50 dark:bg-rose-950/50 text-rose-500">
-            <BabyIcon className="w-5 h-5" />
-          </div>
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-charcoal-900 dark:text-white">
-              {t.dashboard.babySizeTitle}
-            </h2>
-            <p className="text-xs text-charcoal-500 dark:text-charcoal-400">
-              {t.common.week} {formatNumber(calculation.currentWeek)}
-            </p>
-          </div>
+    <div className="rounded-3xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle p-6 sm:p-7 space-y-4">
+      {/* Eyebrow & Title */}
+      <div className="flex items-center justify-between">
+        <div>
+          <span className="text-[11px] font-bold uppercase tracking-widest text-plum-700 dark:text-dustyRose-400 block mb-0.5">
+            {t.dashboard.babyThisWeekHeading}
+          </span>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-plum-950 dark:text-white">
+            {t.common.week} {formatNumber(currentWeekNum)}
+          </h3>
         </div>
 
         <Link
           href="/baby"
-          className="inline-flex items-center space-x-1 text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 bg-rose-50 dark:bg-rose-950/40 px-3 py-1.5 rounded-full transition"
+          className="text-xs font-semibold text-plum-700 dark:text-dustyRose-300 hover:text-plum-900 dark:hover:text-dustyRose-200 inline-flex items-center space-x-1 transition group"
         >
-          <span>{t.dashboard.viewAllWeeks}</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <span>{t.dashboard.exploreWeek.replace('{week}', formatNumber(currentWeekNum))}</span>
         </Link>
       </div>
 
-      <div className="p-5 sm:p-6 space-y-5">
-        {/* Fruit Size Highlight Banner */}
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-cream-100 via-rose-50 to-cream-100 dark:from-charcoal-800/80 dark:via-charcoal-800 dark:to-charcoal-800/80 border border-cream-200 dark:border-charcoal-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-2xl bg-white dark:bg-charcoal-700 flex items-center justify-center text-2xl shadow-sm">
-              🥑
-            </div>
-            <div>
-              <span className="text-[11px] uppercase tracking-wider text-rose-600 dark:text-rose-400 font-bold block">
-                {language === 'bn' ? 'তুলনামূলক আকার' : 'Size Comparison'}
-              </span>
-              <h3 className="text-base sm:text-lg font-extrabold text-charcoal-900 dark:text-white">
-                {fruitName}
-              </h3>
-            </div>
+      {/* Fruit Comparison & Measurements Pill */}
+      <div className="p-4 rounded-2xl bg-ivory-100/90 dark:bg-charcoal-900/60 border border-ivory-300 dark:border-charcoal-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl bg-white dark:bg-charcoal-800 flex items-center justify-center text-xl shadow-subtle border border-[#EFE8DE] dark:border-charcoal-700">
+            🌱
           </div>
-
-          <div className="flex items-center gap-4 text-xs border-t sm:border-t-0 sm:border-l border-rose-200/50 dark:border-charcoal-700 pt-3 sm:pt-0 sm:pl-4">
-            <div className="flex items-center space-x-1.5">
-              <Ruler className="w-4 h-4 text-rose-500" />
-              <div>
-                <span className="text-charcoal-400 block text-[10px]">{t.dashboard.approxLength}</span>
-                <span className="font-bold text-charcoal-800 dark:text-charcoal-100">
-                  ~{formatNumber(weekData.approxLengthCm)} cm
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-1.5">
-              <Weight className="w-4 h-4 text-sage-600 dark:text-sage-400" />
-              <div>
-                <span className="text-charcoal-400 block text-[10px]">{t.dashboard.approxWeight}</span>
-                <span className="font-bold text-charcoal-800 dark:text-charcoal-100">
-                  ~{formatNumber(weekData.approxWeightGrams)} g
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Development Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 rounded-2xl bg-rose-50/40 dark:bg-charcoal-800/40 border border-rose-100/60 dark:border-charcoal-800">
-            <h4 className="font-bold text-charcoal-900 dark:text-white flex items-center space-x-1.5 mb-1.5 text-xs">
-              <Sparkles className="w-3.5 h-3.5 text-rose-500" />
-              <span>{t.dashboard.babyDevelopmentTitle}</span>
-            </h4>
-            <p className="text-charcoal-600 dark:text-charcoal-300 leading-relaxed line-clamp-3">
-              {devText}
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-sage-50/40 dark:bg-charcoal-800/40 border border-sage-100/60 dark:border-charcoal-800">
-            <h4 className="font-bold text-charcoal-900 dark:text-white flex items-center space-x-1.5 mb-1.5 text-xs">
-              <HeartHandshake className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
-              <span>{t.dashboard.motherChangesTitle}</span>
-            </h4>
-            <p className="text-charcoal-600 dark:text-charcoal-300 leading-relaxed line-clamp-3">
-              {motherText}
-            </p>
-          </div>
-        </div>
-
-        {/* Daily Wellness Tip */}
-        <div className="p-3.5 rounded-2xl bg-lavender-50/70 dark:bg-charcoal-800/60 border border-lavender-200/50 dark:border-charcoal-700 text-xs text-charcoal-700 dark:text-charcoal-300 flex items-start space-x-2.5">
-          <span className="text-base">🌸</span>
           <div>
-            <strong className="font-semibold block text-lavender-700 dark:text-lavender-300 mb-0.5">
-              {t.dashboard.wellnessTipTitle}:
-            </strong>
-            <p className="italic text-charcoal-600 dark:text-charcoal-300">{wellnessText}</p>
+            <span className="text-[10px] uppercase tracking-wider text-charcoal-400 font-bold block">
+              {language === 'bn' ? 'তুলনামূলক আকার' : 'Size Comparison'}
+            </span>
+            <span className="text-sm sm:text-base font-bold text-plum-950 dark:text-white">
+              {fruitName}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 text-xs text-charcoal-600 dark:text-charcoal-300 pt-2 sm:pt-0 border-t sm:border-t-0 sm:border-l border-ivory-300 dark:border-charcoal-700 sm:pl-4">
+          <div className="flex items-center space-x-1.5">
+            <Ruler className="w-3.5 h-3.5 text-dustyRose-500" />
+            <span>~{formatNumber(weekData.approxLengthCm)} cm</span>
+          </div>
+          <div className="flex items-center space-x-1.5">
+            <Weight className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
+            <span>~{formatNumber(weekData.approxWeightGrams)} g</span>
           </div>
         </div>
       </div>
+
+      {/* Development Summary (concise line-clamp-2) */}
+      <p className="text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 leading-relaxed line-clamp-2">
+        {devText}
+      </p>
     </div>
   );
 }

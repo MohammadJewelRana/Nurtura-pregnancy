@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Droplet, Footprints, Scale, Smile, BookOpen, CheckSquare, Plus } from 'lucide-react';
+import { Footprints, Droplet, Scale, BookOpen, Plus } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { getSavedWaterLogs, saveWaterLogs } from '@/lib/storage/local-storage';
 import { toDateString, getTodayDate } from '@/lib/date/date-utils';
@@ -31,90 +31,80 @@ export function DashboardQuickActions() {
     setGlasses(updated);
   };
 
-  const actionItems = [
+  const actions = [
+    {
+      href: '/tracking?tab=kicks',
+      label: t.dashboard.logMovement,
+      icon: Footprints,
+      color: 'text-plum-700 dark:text-dustyRose-300 bg-plum-50 dark:bg-plum-950/40 border-plum-200/50 dark:border-plum-800/40',
+      badge: null,
+    },
     {
       href: '/tracking?tab=water',
       label: t.dashboard.logWater,
-      sub: `${formatNumber(glasses)}/8`,
       icon: Droplet,
-      color: 'text-blue-500 bg-blue-50 dark:bg-blue-950/40 border-blue-100 dark:border-blue-900',
-      badgeAction: (
+      color: 'text-dustyRose-600 dark:text-dustyRose-300 bg-dustyRose-50 dark:bg-dustyRose-950/40 border-dustyRose-200/50 dark:border-dustyRose-800/40',
+      badge: (
         <button
           onClick={addQuickGlass}
           title="Quick +1 glass"
-          className="p-1 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition shadow-sm"
+          className="p-1 rounded-full bg-plum-700 text-white hover:bg-plum-800 transition shadow-subtle"
         >
-          <Plus className="w-3.5 h-3.5" />
+          <Plus className="w-3 h-3" />
         </button>
       ),
-    },
-    {
-      href: '/tracking?tab=kicks',
-      label: t.dashboard.kickCounter,
-      sub: t.tracking.kicksCounted,
-      icon: Footprints,
-      color: 'text-rose-500 bg-rose-50 dark:bg-rose-950/40 border-rose-100 dark:border-rose-900',
+      subtext: `${formatNumber(glasses)}/8`,
     },
     {
       href: '/tracking?tab=weight',
       label: t.dashboard.weightTrack,
-      sub: 'kg trend',
       icon: Scale,
-      color: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 border-emerald-100 dark:border-emerald-900',
-    },
-    {
-      href: '/tracking?tab=mood',
-      label: t.dashboard.moodTrack,
-      sub: 'Daily check-in',
-      icon: Smile,
-      color: 'text-amber-500 bg-amber-50 dark:bg-amber-950/40 border-amber-100 dark:border-amber-900',
+      color: 'text-sage-700 dark:text-sage-300 bg-sage-50 dark:bg-sage-950/40 border-sage-200/50 dark:border-sage-800/40',
+      badge: null,
     },
     {
       href: '/journal',
-      label: t.dashboard.newJournal,
-      sub: 'Memories',
+      label: t.dashboard.moodTrack,
       icon: BookOpen,
-      color: 'text-purple-500 bg-purple-50 dark:bg-purple-950/40 border-purple-100 dark:border-purple-900',
-    },
-    {
-      href: '/checklist',
-      label: t.nav.checklists,
-      sub: 'Prep & bags',
-      icon: CheckSquare,
-      color: 'text-rose-600 bg-rose-50/60 dark:bg-rose-950/30 border-rose-100 dark:border-rose-900',
+      color: 'text-champagne-700 dark:text-champagne-300 bg-champagne-50 dark:bg-champagne-950/40 border-champagne-200/50 dark:border-champagne-800/40',
+      badge: null,
     },
   ];
 
   return (
-    <div className="rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 p-5 sm:p-6 shadow-soft">
-      <h3 className="text-sm font-bold text-charcoal-900 dark:text-white uppercase tracking-wider mb-4">
-        {t.dashboard.quickActions}
-      </h3>
+    <div className="space-y-3">
+      <div className="flex items-center justify-between px-1">
+        <h4 className="text-xs font-bold uppercase tracking-widest text-charcoal-400 dark:text-charcoal-400">
+          {t.dashboard.quickActions}
+        </h4>
+      </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-        {actionItems.map((item, idx) => {
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {actions.map((item, idx) => {
           const Icon = item.icon;
           return (
             <Link
               key={idx}
               href={item.href}
-              className="group p-3 rounded-2xl border border-rose-100 dark:border-charcoal-800 bg-rose-50/20 dark:bg-charcoal-800/40 hover:bg-rose-50 dark:hover:bg-charcoal-800 hover:border-rose-200 transition flex flex-col justify-between"
+              className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle hover:shadow-premium hover:border-plum-200 dark:hover:border-plum-800 transition-all duration-200 flex items-center justify-between group"
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className={`p-2 rounded-xl border ${item.color} group-hover:scale-105 transition-transform`}>
+              <div className="flex items-center space-x-3">
+                <div className={`p-2.5 rounded-xl border ${item.color} group-hover:scale-105 transition-transform duration-200`}>
                   <Icon className="w-4 h-4" />
                 </div>
-                {item.badgeAction}
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-plum-950 dark:text-white block group-hover:text-plum-700 dark:group-hover:text-dustyRose-300 transition-colors">
+                    {item.label}
+                  </span>
+                  {item.subtext && (
+                    <span className="text-[10px] text-charcoal-400 font-medium">
+                      {item.subtext}
+                    </span>
+                  )}
+                </div>
               </div>
 
-              <div>
-                <span className="text-xs font-bold text-charcoal-800 dark:text-white block group-hover:text-rose-600 dark:group-hover:text-rose-400 transition">
-                  {item.label}
-                </span>
-                <span className="text-[10px] text-charcoal-400 block truncate">
-                  {item.sub}
-                </span>
-              </div>
+              {item.badge}
             </Link>
           );
         })}

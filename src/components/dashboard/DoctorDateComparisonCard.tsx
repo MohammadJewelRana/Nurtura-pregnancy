@@ -16,7 +16,7 @@ export function DoctorDateComparisonCard() {
   if (!doctorEdd && !calculatedEdd) return null;
 
   return (
-    <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft">
+    <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
       <div className="flex items-center space-x-2 mb-3">
         <div className="p-2 rounded-xl bg-sage-50 dark:bg-charcoal-800 text-sage-600 dark:text-sage-400">
           <Stethoscope className="w-4 h-4" />
@@ -31,7 +31,7 @@ export function DoctorDateComparisonCard() {
         <div className={`p-3 rounded-2xl border transition-all ${
           doctorEdd
             ? 'bg-sage-50/50 dark:bg-sage-950/20 border-sage-200 dark:border-sage-800/50'
-            : 'bg-charcoal-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
+            : 'bg-ivory-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
         }`}>
           <div className="flex items-center justify-between text-charcoal-500 dark:text-charcoal-400 mb-1">
             <span>{t.dashboard.doctorEdd}</span>
@@ -45,13 +45,13 @@ export function DoctorDateComparisonCard() {
         {/* Calculated EDD from LMP */}
         <div className={`p-3 rounded-2xl border transition-all ${
           calculatedEdd
-            ? 'bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900/50'
-            : 'bg-charcoal-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
+            ? 'bg-ivory-50/70 dark:bg-charcoal-800/50 border-plum-100/60 dark:border-charcoal-700'
+            : 'bg-ivory-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
         }`}>
           <div className="flex items-center justify-between text-charcoal-500 dark:text-charcoal-400 mb-1">
             <span>{t.dashboard.calculatedEdd}</span>
             {!isUsingDoctorEdd && calculatedEdd && (
-              <CheckCircle2 className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-plum-800 dark:text-dustyRose-400" />
             )}
           </div>
           <div className="text-sm font-bold text-charcoal-900 dark:text-white">
@@ -60,12 +60,12 @@ export function DoctorDateComparisonCard() {
         </div>
 
         {/* Primary Due Date */}
-        <div className="p-3 rounded-2xl bg-gradient-to-br from-rose-500/10 to-rose-600/5 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800">
-          <div className="flex items-center justify-between text-rose-700 dark:text-rose-300 font-semibold mb-1">
+        <div className="p-3 rounded-2xl bg-plum-50/60 dark:bg-plum-950/30 border border-plum-200 dark:border-plum-800">
+          <div className="flex items-center justify-between text-plum-800 dark:text-dustyRose-300 font-semibold mb-1">
             <span>{t.dashboard.primaryEdd}</span>
             <Calendar className="w-3.5 h-3.5" />
           </div>
-          <div className="text-sm font-extrabold text-rose-700 dark:text-rose-300">
+          <div className="text-sm font-extrabold text-plum-900 dark:text-dustyRose-200">
             {formatDate(primaryEdd)}
           </div>
         </div>
@@ -87,8 +87,8 @@ export function DoctorDateComparisonCard() {
           </div>
         </div>
       ) : (
-        <div className="mt-3 flex items-center space-x-2 text-[11px] text-charcoal-500 dark:text-charcoal-400 bg-rose-50/40 dark:bg-charcoal-800/40 p-2.5 rounded-xl">
-          <Info className="w-4 h-4 flex-shrink-0 text-rose-400" />
+        <div className="mt-3 flex items-center space-x-2 text-[11px] text-charcoal-500 dark:text-charcoal-400 bg-ivory-100/60 dark:bg-charcoal-800/40 p-2.5 rounded-xl border border-plum-100/30 dark:border-charcoal-700/50">
+          <Info className="w-4 h-4 flex-shrink-0 text-plum-700 dark:text-dustyRose-400" />
           <span>
             {language === 'bn'
               ? 'LMP থেকে ২৮০ দিন যোগ করে সম্ভাব্য তারিখ হিসাব করা হয়েছে। ডাক্তার বা আল্ট্রাসাউন্ডের তারিখ পেলে তা সেটিংসে যোগ করতে পারেন।'

@@ -26,7 +26,7 @@ export function TrackingHub() {
   }, [searchParams]);
 
   const tabs: { id: TrackingTab; label: string; icon: React.ElementType }[] = [
-    { id: 'kicks', label: t.dashboard.kickCounter, icon: Footprints },
+    { id: 'kicks', label: t.dashboard.logMovement, icon: Footprints },
     { id: 'water', label: t.dashboard.logWater, icon: Droplet },
     { id: 'weight', label: t.dashboard.weightTrack, icon: Scale },
     { id: 'mood', label: t.dashboard.moodTrack, icon: Smile },
@@ -36,7 +36,7 @@ export function TrackingHub() {
     <div className="space-y-6">
       {/* Title Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-plum-950 dark:text-white">
           {t.tracking.hubTitle}
         </h1>
         <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
@@ -45,7 +45,7 @@ export function TrackingHub() {
       </div>
 
       {/* Tabs navigation bar */}
-      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft overflow-x-auto">
+      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle overflow-x-auto">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -53,13 +53,13 @@ export function TrackingHub() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 min-w-[80px] py-2.5 px-3 rounded-xl flex items-center justify-center space-x-2 text-xs font-semibold transition-all ${
+              className={`flex-1 min-w-[80px] py-2.5 px-3 rounded-xl flex items-center justify-center space-x-2 text-xs font-semibold transition-all duration-200 ${
                 isActive
-                  ? 'bg-rose-500 text-white shadow-sm'
-                  : 'text-charcoal-600 dark:text-charcoal-400 hover:text-rose-600 hover:bg-rose-50/50 dark:hover:bg-charcoal-800'
+                  ? 'bg-plum-700 text-white shadow-subtle'
+                  : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-800 hover:bg-ivory-100 dark:hover:bg-charcoal-800'
               }`}
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="w-3.5 h-3.5" />
               <span>{tab.label}</span>
             </button>
           );

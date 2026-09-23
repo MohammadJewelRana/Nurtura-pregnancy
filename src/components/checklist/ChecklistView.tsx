@@ -124,7 +124,7 @@ export function ChecklistView() {
       </div>
 
       {/* View Switcher Bar */}
-      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft">
+      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
         <button
           onClick={() => {
             setActiveView('trimesters');
@@ -132,8 +132,8 @@ export function ChecklistView() {
           }}
           className={`flex-1 py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
             activeView === 'trimesters'
-              ? 'bg-rose-500 text-white shadow-sm'
-              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-rose-600'
+              ? 'bg-plum-900 text-white shadow-soft'
+              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-900 dark:hover:text-white'
           }`}
         >
           <CheckSquare className="w-4 h-4" />
@@ -150,8 +150,8 @@ export function ChecklistView() {
           }}
           className={`flex-1 py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
             activeView === 'hospital'
-              ? 'bg-rose-500 text-white shadow-sm'
-              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-rose-600'
+              ? 'bg-plum-900 text-white shadow-soft'
+              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-900 dark:hover:text-white'
           }`}
         >
           <Luggage className="w-4 h-4" />
@@ -163,16 +163,16 @@ export function ChecklistView() {
       </div>
 
       {/* Progress banner */}
-      <div className="p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft">
+      <div className="p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
         <div className="flex justify-between items-center text-xs font-semibold text-charcoal-700 dark:text-charcoal-300 mb-2">
           <span>{t.checklists.overallProgress}</span>
-          <span className="text-rose-600 dark:text-rose-400 text-sm font-bold">
+          <span className="text-plum-800 dark:text-dustyRose-400 text-sm font-bold">
             {formatNumber(activeView === 'trimesters' ? trimesterPercent : hospitalPercent)}%
           </span>
         </div>
-        <div className="w-full bg-rose-50 dark:bg-charcoal-800 rounded-full h-2.5 overflow-hidden">
+        <div className="w-full bg-ivory-100 dark:bg-charcoal-800 rounded-full h-2.5 overflow-hidden">
           <div
-            className="bg-gradient-to-r from-rose-400 to-rose-600 h-full rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-plum-700 via-dustyRose-500 to-champagne-400 h-full rounded-full transition-all duration-500"
             style={{ width: `${activeView === 'trimesters' ? trimesterPercent : hospitalPercent}%` }}
           />
         </div>
@@ -181,7 +181,7 @@ export function ChecklistView() {
       {/* Add Custom Task Form */}
       <form
         onSubmit={handleAddCustom}
-        className="p-4 rounded-2xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 flex flex-col sm:flex-row gap-3 shadow-soft"
+        className="p-4 rounded-2xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 flex flex-col sm:flex-row gap-3 shadow-soft"
       >
         <div className="flex-1">
           <input
@@ -190,7 +190,7 @@ export function ChecklistView() {
             placeholder={t.checklists.itemPlaceholder}
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400"
+            className="w-full px-4 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-plum-400"
           />
         </div>
 
@@ -198,7 +198,7 @@ export function ChecklistView() {
           <select
             value={newCategory}
             onChange={(e) => setNewCategory(e.target.value)}
-            className="px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold"
+            className="px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold text-charcoal-800 dark:text-charcoal-200"
           >
             <option value="first-trimester">{t.common.firstTrimester}</option>
             <option value="second-trimester">{t.common.secondTrimester}</option>
@@ -208,7 +208,7 @@ export function ChecklistView() {
           <select
             value={newCategory}
             onChange={(e) => setNewCategory(e.target.value)}
-            className="px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold"
+            className="px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold text-charcoal-800 dark:text-charcoal-200"
           >
             <option value="mother">{t.checklists.motherBag}</option>
             <option value="baby">{t.checklists.babyBag}</option>
@@ -219,7 +219,7 @@ export function ChecklistView() {
 
         <button
           type="submit"
-          className="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft flex items-center justify-center space-x-1.5 transition"
+          className="px-5 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white text-xs font-semibold shadow-soft flex items-center justify-center space-x-1.5 transition"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>{t.checklists.addItem}</span>
@@ -241,10 +241,10 @@ export function ChecklistView() {
             return (
               <div
                 key={cat}
-                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft"
+                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft"
               >
                 <div className="flex items-center space-x-2 mb-4">
-                  <Sparkles className="w-4 h-4 text-rose-500" />
+                  <Sparkles className="w-4 h-4 text-champagne-500 dark:text-champagne-400" />
                   <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
                     {catLabel}
                   </h3>
@@ -257,13 +257,13 @@ export function ChecklistView() {
                       onClick={() => toggleChecklist(item.id)}
                       className={`p-3.5 rounded-2xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
                         item.isCompleted
-                          ? 'bg-rose-50/50 dark:bg-charcoal-800/60 border-rose-200 dark:border-charcoal-700 text-charcoal-400 line-through'
-                          : 'bg-white dark:bg-charcoal-800 border-rose-100 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-rose-50/40'
+                          ? 'bg-ivory-100/60 dark:bg-charcoal-800/40 border-plum-100/40 dark:border-charcoal-700/60 text-charcoal-400 line-through'
+                          : 'bg-white dark:bg-charcoal-800/80 border-plum-100/60 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-ivory-50/70 dark:hover:bg-charcoal-800'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         {item.isCompleted ? (
-                          <CheckSquare className="w-4 h-4 text-rose-500 flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-plum-700 dark:text-dustyRose-400 flex-shrink-0" />
                         ) : (
                           <Square className="w-4 h-4 text-charcoal-400 flex-shrink-0" />
                         )}
@@ -307,10 +307,10 @@ export function ChecklistView() {
             return (
               <div
                 key={cat}
-                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft"
+                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft"
               >
                 <div className="flex items-center space-x-2 mb-4">
-                  <Luggage className="w-4 h-4 text-rose-500" />
+                  <Luggage className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
                   <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
                     {catLabel}
                   </h3>
@@ -323,13 +323,13 @@ export function ChecklistView() {
                       onClick={() => toggleHospitalBag(item.id)}
                       className={`p-3.5 rounded-2xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
                         item.isPacked
-                          ? 'bg-sage-50/50 dark:bg-charcoal-800/60 border-sage-200 dark:border-charcoal-700 text-charcoal-400 line-through'
-                          : 'bg-white dark:bg-charcoal-800 border-rose-100 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-sage-50/40'
+                          ? 'bg-sage-50/50 dark:bg-charcoal-800/40 border-sage-200/60 dark:border-charcoal-700 text-charcoal-400 line-through'
+                          : 'bg-white dark:bg-charcoal-800/80 border-plum-100/60 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-sage-50/30'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         {item.isPacked ? (
-                          <CheckSquare className="w-4 h-4 text-sage-600 flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-sage-600 dark:text-sage-400 flex-shrink-0" />
                         ) : (
                           <Square className="w-4 h-4 text-charcoal-400 flex-shrink-0" />
                         )}

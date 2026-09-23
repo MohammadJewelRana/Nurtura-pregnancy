@@ -65,14 +65,14 @@ export function WeightTracker() {
   return (
     <div className="space-y-6">
       {/* Top Overview & Action Card */}
-      <div className="p-6 sm:p-8 bg-white dark:bg-charcoal-900 rounded-3xl border border-rose-100 dark:border-charcoal-800 shadow-soft">
+      <div className="p-6 sm:p-8 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div className="flex items-center space-x-3">
-            <div className="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400">
+            <div className="p-3 rounded-2xl bg-sage-50 dark:bg-sage-950/40 text-sage-700 dark:text-sage-300">
               <Scale className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-charcoal-900 dark:text-white">
+              <h3 className="text-xl font-bold text-plum-950 dark:text-white">
                 {t.tracking.weightTitle}
               </h3>
               <p className="text-xs text-charcoal-500 dark:text-charcoal-400">
@@ -83,7 +83,7 @@ export function WeightTracker() {
 
           <button
             onClick={() => setShowAddForm(!showAddForm)}
-            className="px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-soft flex items-center space-x-1.5 transition self-start sm:self-center"
+            className="px-4 py-2.5 rounded-2xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle flex items-center space-x-1.5 transition self-start sm:self-center"
           >
             <Plus className="w-4 h-4" />
             <span>{t.tracking.logWeightBtn}</span>
@@ -92,12 +92,12 @@ export function WeightTracker() {
 
         {/* Latest Metric Banner */}
         {latestRecord && (
-          <div className="mb-6 p-4 rounded-2xl bg-emerald-50/50 dark:bg-charcoal-800/50 border border-emerald-100 dark:border-charcoal-700 flex items-center justify-between">
+          <div className="mb-6 p-4 rounded-2xl bg-sage-50/70 dark:bg-charcoal-800/50 border border-sage-200/80 dark:border-charcoal-700 flex items-center justify-between">
             <div>
               <span className="text-xs text-charcoal-500 dark:text-charcoal-400 block mb-0.5">
                 {t.tracking.currentWeight}
               </span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
+              <div className="text-2xl sm:text-3xl font-extrabold text-sage-800 dark:text-sage-300">
                 {formatNumber(latestRecord.weightKg)}{' '}
                 <span className="text-sm font-semibold">kg</span>
               </div>
@@ -113,9 +113,9 @@ export function WeightTracker() {
         {showAddForm && (
           <form
             onSubmit={handleAddWeight}
-            className="mb-6 p-5 rounded-2xl bg-charcoal-50 dark:bg-charcoal-800/80 border border-charcoal-200 dark:border-charcoal-700 space-y-4"
+            className="mb-6 p-5 rounded-2xl bg-ivory-50 dark:bg-charcoal-800/80 border border-[#EFE8DE] dark:border-charcoal-700 space-y-4"
           >
-            <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-700 dark:text-charcoal-200">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-plum-950 dark:text-charcoal-200">
               {language === 'bn' ? 'নতুন ওজন লিপিবদ্ধ করুন' : 'Log New Weight Record'}
             </h4>
 
@@ -133,7 +133,7 @@ export function WeightTracker() {
                   placeholder="e.g. 62.5"
                   value={weightInput}
                   onChange={(e) => setWeightInput(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-charcoal-300 dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  className="w-full px-3.5 py-2 rounded-xl border border-[#EFE8DE] dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
 
@@ -146,7 +146,7 @@ export function WeightTracker() {
                   required
                   value={dateInput}
                   onChange={(e) => setDateInput(e.target.value)}
-                  className="w-full px-3.5 py-2 rounded-xl border border-charcoal-300 dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  className="w-full px-3.5 py-2 rounded-xl border border-[#EFE8DE] dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
             </div>
@@ -160,7 +160,7 @@ export function WeightTracker() {
                 placeholder={language === 'bn' ? 'যেমন: সকালের খাবারের আগে' : 'e.g. Morning before breakfast'}
                 value={noteInput}
                 onChange={(e) => setNoteInput(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl border border-charcoal-300 dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                className="w-full px-3.5 py-2 rounded-xl border border-[#EFE8DE] dark:border-charcoal-600 bg-white dark:bg-charcoal-700 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
               />
             </div>
 
@@ -168,13 +168,13 @@ export function WeightTracker() {
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="px-4 py-2 rounded-xl text-xs font-medium text-charcoal-600 hover:bg-charcoal-200 dark:text-charcoal-300"
+                className="px-4 py-2 rounded-xl text-xs font-medium text-charcoal-600 hover:bg-ivory-200 dark:text-charcoal-300"
               >
                 {t.common.cancel}
               </button>
               <button
                 type="submit"
-                className="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-sm transition"
+                className="px-5 py-2 rounded-xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle transition"
               >
                 {t.common.save}
               </button>
@@ -186,11 +186,11 @@ export function WeightTracker() {
         {sortedForChart.length >= 2 ? (
           <div className="space-y-3">
             <div className="flex items-center space-x-1.5 text-xs font-semibold text-charcoal-700 dark:text-charcoal-300">
-              <TrendingUp className="w-4 h-4 text-emerald-600" />
+              <TrendingUp className="w-4 h-4 text-sage-600" />
               <span>{language === 'bn' ? 'ওজন পরিবর্তনের চার্ট' : 'Weight Trend Graph'}</span>
             </div>
 
-            <div className="w-full h-48 bg-emerald-50/20 dark:bg-charcoal-800/40 rounded-2xl p-4 border border-emerald-100 dark:border-charcoal-800 flex flex-col justify-between">
+            <div className="w-full h-48 bg-ivory-50 dark:bg-charcoal-800/40 rounded-2xl p-4 border border-[#EFE8DE] dark:border-charcoal-800 flex flex-col justify-between">
               {/* SVG Chart */}
               <svg className="w-full h-36 overflow-visible" viewBox="0 0 500 120" preserveAspectRatio="none">
                 {/* Horizontal reference lines */}
@@ -209,7 +209,7 @@ export function WeightTracker() {
                     <>
                       <polyline
                         fill="none"
-                        stroke="#059669"
+                        stroke="#5B405F"
                         strokeWidth="3"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -220,8 +220,8 @@ export function WeightTracker() {
                         const y = 110 - ((item.weightKg - minWeight) / weightRange) * 90;
                         return (
                           <g key={item.id}>
-                            <circle cx={x} cy={y} r="5" fill="#10B981" stroke="#FFFFFF" strokeWidth="2" />
-                            <text x={x} y={y - 8} textAnchor="middle" fontSize="10" fontWeight="bold" fill="#059669">
+                            <circle cx={x} cy={y} r="5" fill="#875E8C" stroke="#FFFFFF" strokeWidth="2" />
+                            <text x={x} y={y - 8} textAnchor="middle" fontSize="10" fontWeight="bold" fill="#5B405F">
                               {formatNumber(item.weightKg)}
                             </text>
                           </g>
@@ -239,7 +239,7 @@ export function WeightTracker() {
             </div>
           </div>
         ) : (
-          <div className="py-6 text-center text-xs text-charcoal-400 bg-charcoal-50/50 dark:bg-charcoal-800/30 rounded-2xl border border-dashed border-charcoal-200 dark:border-charcoal-700">
+          <div className="py-6 text-center text-xs text-charcoal-400 bg-ivory-50 dark:bg-charcoal-800/30 rounded-2xl border border-dashed border-[#EFE8DE] dark:border-charcoal-700">
             {language === 'bn'
               ? 'ট্রেন্ড চার্ট দেখার জন্য অন্তত ২টি ওজন রেকর্ড যোগ করুন।'
               : 'Log at least 2 weight records to view your trend chart.'}
@@ -248,17 +248,17 @@ export function WeightTracker() {
       </div>
 
       {/* History List */}
-      <div className="p-6 bg-white dark:bg-charcoal-900 rounded-3xl border border-rose-100 dark:border-charcoal-800 shadow-soft">
-        <h4 className="text-sm font-bold text-charcoal-900 dark:text-white mb-4">
+      <div className="p-6 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle">
+        <h4 className="text-sm font-bold text-plum-950 dark:text-white mb-4">
           {t.tracking.weightHistory}
         </h4>
 
         {records.length > 0 ? (
-          <div className="divide-y divide-rose-50 dark:divide-charcoal-800">
+          <div className="divide-y divide-[#F2ECE3] dark:divide-[#2C2130]">
             {records.map((r) => (
               <div key={r.id} className="py-3 flex items-center justify-between text-xs">
                 <div>
-                  <span className="font-semibold text-charcoal-900 dark:text-white">
+                  <span className="font-semibold text-plum-950 dark:text-white">
                     {formatDate(r.date)}
                   </span>
                   {r.note && (
@@ -269,7 +269,7 @@ export function WeightTracker() {
                 </div>
 
                 <div className="flex items-center space-x-3">
-                  <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                  <span className="text-sm font-bold text-plum-800 dark:text-dustyRose-300">
                     {formatNumber(r.weightKg)} kg
                   </span>
                   <button
@@ -291,8 +291,8 @@ export function WeightTracker() {
       </div>
 
       {/* Non-Prescriptive Medical Context Disclaimer */}
-      <div className="p-4 rounded-2xl bg-emerald-50/60 dark:bg-charcoal-800/60 border border-emerald-100 dark:border-charcoal-700 flex items-start space-x-3 text-xs text-charcoal-600 dark:text-charcoal-300">
-        <Info className="w-4 h-4 flex-shrink-0 text-emerald-600 mt-0.5" />
+      <div className="p-4 rounded-2xl bg-ivory-100/80 dark:bg-charcoal-800/60 border border-[#EFE8DE] dark:border-charcoal-700 flex items-start space-x-3 text-xs text-charcoal-600 dark:text-charcoal-300">
+        <Info className="w-4 h-4 flex-shrink-0 text-plum-600 dark:text-champagne-400 mt-0.5" />
         <p className="leading-relaxed">{t.tracking.weightDisclaimer}</p>
       </div>
     </div>

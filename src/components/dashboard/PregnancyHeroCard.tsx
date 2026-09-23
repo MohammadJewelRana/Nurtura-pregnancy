@@ -2,32 +2,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Calendar, Stethoscope, AlertTriangle } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { usePregnancy } from '@/context/PregnancyContext';
 
 export function PregnancyHeroCard() {
-  const { t, formatNumber, formatDate, language } = useLanguage();
+  const { t, formatNumber, language } = useLanguage();
   const { calculation } = usePregnancy();
 
   if (!calculation.isValid) return null;
 
-  const {
-    currentWeek,
-    currentDay,
-    progressPercent,
-    daysRemaining,
-    isOverdue,
-    overdueDays,
-    isDueToday,
-    trimester,
-    primaryEdd,
-    doctorEdd,
-    calculatedEdd,
-    datesDiffer,
-    dateDifferenceDays,
-    isUsingDoctorEdd,
-  } = calculation;
+  const { currentWeek, currentDay, progressPercent, trimester } = calculation;
 
   const trimesterLabel =
     trimester === 1
@@ -37,92 +22,60 @@ export function PregnancyHeroCard() {
       : t.common.thirdTrimester;
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-rose-600 to-rose-700 text-white p-6 sm:p-8 shadow-soft-lg">
-      {/* Decorative backdrop elements */}
-      <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/10 blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-44 h-44 rounded-full bg-rose-400/20 blur-xl pointer-events-none" />
+    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-plum-800 via-plum-700 to-dustyRose-600 text-white p-6 sm:p-8 shadow-hero border border-plum-600/30">
+      {/* Subtle warm glow circles in background */}
+      <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-dustyRose-400/20 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-champagne-400/15 blur-2xl pointer-events-none" />
 
-      <div className="relative z-10">
-        {/* Top Badges: Trimester & Countdown */}
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold uppercase tracking-wider text-rose-50 border border-white/20">
-            <Sparkles className="w-3.5 h-3.5" />
+      <div className="relative z-10 space-y-4 sm:space-y-5">
+        {/* Trimester Badge */}
+        <div className="flex items-center justify-between">
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-dustyRose-100 border border-white/15">
+            <Sparkles className="w-3 h-3 text-champagne-300" />
             <span>{trimesterLabel}</span>
           </span>
 
-          <div className="text-xs font-medium px-3 py-1 rounded-full bg-black/15 backdrop-blur-md text-white/90">
-            {isDueToday ? (
-              <span className="font-bold text-amber-200">{t.common.dueToday}</span>
-            ) : isOverdue ? (
-              <span className="font-semibold text-rose-100 flex items-center gap-1">
-                <AlertTriangle className="w-3.5 h-3.5 inline text-amber-300" />
-                {language === 'bn'
-                  ? `সম্ভাব্য প্রসবের তারিখ থেকে ${formatNumber(overdueDays)} দিন অতিক্রান্ত`
-                  : `Due date passed by ${formatNumber(overdueDays)} days`}
-              </span>
-            ) : (
-              <span>
-                <strong className="text-white font-bold">{formatNumber(daysRemaining)}</strong>{' '}
-                {t.common.daysRemaining}
-              </span>
-            )}
-          </div>
+          <span className="text-[11px] sm:text-xs font-medium text-white/80">
+            {formatNumber(progressPercent)}% {language === 'bn' ? 'সম্পন্ন' : 'completed'}
+          </span>
         </div>
 
-        {/* Big Gestational Age Header */}
-        <div className="my-3 sm:my-5">
-          <p className="text-xs sm:text-sm text-rose-100/90 font-medium">
+        {/* Large Gestational Week & Day Display */}
+        <div>
+          <p className="text-xs sm:text-sm text-dustyRose-200/90 font-medium tracking-wide mb-1">
             {t.dashboard.currentStage}
           </p>
-          <div className="flex items-baseline space-x-2 mt-1">
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-              {formatNumber(currentWeek)}{' '}
-              <span className="text-lg sm:text-2xl font-semibold opacity-90">{t.common.weeks}</span>{' '}
-              {formatNumber(currentDay)}{' '}
-              <span className="text-lg sm:text-2xl font-semibold opacity-90">{t.common.days}</span>
-            </h1>
-          </div>
-        </div>
-
-        {/* Progress Bar with Framer Motion */}
-        <div className="mt-4 mb-6">
-          <div className="flex justify-between items-center text-xs mb-1.5 font-medium text-rose-100">
-            <span>{t.dashboard.progressTitle}</span>
-            <span className="font-bold text-white text-sm">
-              {formatNumber(progressPercent)}%
+          <div className="flex items-baseline space-x-2 sm:space-x-3">
+            <span className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none">
+              {formatNumber(currentWeek)}
+            </span>
+            <span className="text-xl sm:text-2xl font-bold text-dustyRose-100 opacity-95">
+              {t.common.weeks}
+            </span>
+            <span className="text-3xl sm:text-4xl font-extrabold text-champagne-200 ml-1">
+              {formatNumber(currentDay)}
+            </span>
+            <span className="text-lg sm:text-xl font-semibold text-dustyRose-100 opacity-90">
+              {t.common.days}
             </span>
           </div>
-          <div className="w-full h-3 rounded-full bg-black/20 overflow-hidden p-0.5">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-amber-200 via-rose-200 to-white shadow-sm"
-              initial={{ width: 0 }}
-              animate={{ width: `${progressPercent}%` }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-            />
-          </div>
         </div>
 
-        {/* Primary Due Date Summary Bar */}
-        <div className="pt-4 border-t border-white/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm">
-          <div className="flex items-center space-x-2 text-rose-100">
-            <Calendar className="w-4 h-4 text-white" />
-            <span>{t.dashboard.primaryEdd}:</span>
-            <strong className="text-white font-semibold">
-              {formatDate(primaryEdd)}
-            </strong>
+        {/* Minimal Progress Bar */}
+        <div className="pt-1">
+          <div className="w-full h-2 sm:h-2.5 rounded-full bg-black/25 overflow-hidden p-0.5 border border-white/10">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-champagne-300 via-dustyRose-200 to-white"
+              initial={{ width: 0 }}
+              animate={{ width: `${progressPercent}%` }}
+              transition={{ duration: 1.1, ease: 'easeOut' }}
+            />
           </div>
-
-          {/* If Doctor EDD differs from Calculated EDD, show clear comparison */}
-          {datesDiffer && doctorEdd && calculatedEdd && (
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/15 backdrop-blur border border-white/20 text-xs">
-              <Stethoscope className="w-3.5 h-3.5 text-amber-200 flex-shrink-0" />
-              <span>
-                {language === 'bn'
-                  ? `ডাক্তারের তারিখ ব্যবহৃত হচ্ছে (ব্যবধন: ${formatNumber(Math.abs(dateDifferenceDays))} দিন)`
-                  : `Doctor's date prioritized (${formatNumber(Math.abs(dateDifferenceDays))}d diff)`}
-              </span>
-            </div>
-          )}
+          <p className="text-[11px] text-dustyRose-200/80 mt-2 text-right">
+            {language === 'bn'
+              ? `মোট ৪০ সপ্তাহের যাত্রার ${formatNumber(progressPercent)}%`
+              : `${formatNumber(progressPercent)}% of pregnancy journey`}
+          </p>
         </div>
       </div>
     </div>

@@ -111,8 +111,8 @@ export function SettingsView() {
       )}
 
       {/* Profile & Dates Card */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft space-y-4">
-        <div className="flex items-center space-x-2 text-rose-500">
+      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft space-y-4">
+        <div className="flex items-center space-x-2 text-plum-800 dark:text-dustyRose-400">
           <Calendar className="w-5 h-5" />
           <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
             {t.settings.profileSection}
@@ -122,14 +122,14 @@ export function SettingsView() {
         {calculation.isValid ? (
           <div className="space-y-3 text-xs">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-2xl bg-rose-50/50 dark:bg-charcoal-800/50 border border-rose-100 dark:border-charcoal-700">
+              <div className="p-3.5 rounded-2xl bg-ivory-50/70 dark:bg-charcoal-800/50 border border-plum-100/60 dark:border-charcoal-700">
                 <span className="text-charcoal-400 block mb-0.5">{t.setup.motherNameLabel}</span>
                 <span className="font-bold text-sm text-charcoal-800 dark:text-white">
                   {profile?.name || (language === 'bn' ? 'মা' : 'Mama')}
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-rose-50/50 dark:bg-charcoal-800/50 border border-rose-100 dark:border-charcoal-700">
+              <div className="p-3.5 rounded-2xl bg-ivory-50/70 dark:bg-charcoal-800/50 border border-plum-100/60 dark:border-charcoal-700">
                 <span className="text-charcoal-400 block mb-0.5">{t.dashboard.primaryEdd}</span>
                 <span className="font-bold text-sm text-charcoal-800 dark:text-white">
                   {formatDate(calculation.primaryEdd)}
@@ -139,7 +139,7 @@ export function SettingsView() {
 
             <button
               onClick={() => setShowEditDates(true)}
-              className="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs transition shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white font-semibold text-xs transition shadow-soft"
             >
               {t.settings.editDatesBtn}
             </button>
@@ -149,7 +149,7 @@ export function SettingsView() {
             <p className="text-xs text-charcoal-500 mb-3">{t.setup.welcomeSubtitle}</p>
             <button
               onClick={() => setShowEditDates(true)}
-              className="px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs transition shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white font-semibold text-xs transition shadow-soft"
             >
               {t.setup.startJourney}
             </button>
@@ -158,12 +158,12 @@ export function SettingsView() {
       </div>
 
       {/* Preferences Card */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft space-y-4">
+      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft space-y-4">
         <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
           {t.settings.preferencesSection}
         </h3>
 
-        <div className="divide-y divide-rose-50 dark:divide-charcoal-800 text-xs sm:text-sm">
+        <div className="divide-y divide-plum-50 dark:divide-charcoal-800 text-xs sm:text-sm">
           {/* Language preference */}
           <div className="py-3 flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
@@ -189,8 +189,8 @@ export function SettingsView() {
       </div>
 
       {/* Data & Privacy Controls */}
-      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft space-y-4">
-        <div className="flex items-center space-x-2 text-emerald-600">
+      <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft space-y-4">
+        <div className="flex items-center space-x-2 text-sage-600 dark:text-sage-400">
           <ShieldCheck className="w-5 h-5" />
           <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
             {t.settings.storageSection}
@@ -218,15 +218,15 @@ export function SettingsView() {
           {/* Export JSON */}
           <button
             onClick={handleExport}
-            className="px-4 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-800 dark:text-charcoal-200 hover:bg-rose-50 text-xs font-semibold flex items-center space-x-1.5 transition"
+            className="px-4 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-800 dark:text-charcoal-200 hover:bg-ivory-100 text-xs font-semibold flex items-center space-x-1.5 transition"
           >
-            <Download className="w-4 h-4 text-rose-500" />
+            <Download className="w-4 h-4 text-plum-800 dark:text-dustyRose-400" />
             <span>{t.common.exportData}</span>
           </button>
 
           {/* Import JSON */}
-          <label className="px-4 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-800 dark:text-charcoal-200 hover:bg-rose-50 text-xs font-semibold flex items-center space-x-1.5 cursor-pointer transition">
-            <Upload className="w-4 h-4 text-rose-500" />
+          <label className="px-4 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-800 dark:text-charcoal-200 hover:bg-ivory-100 text-xs font-semibold flex items-center space-x-1.5 cursor-pointer transition">
+            <Upload className="w-4 h-4 text-plum-800 dark:text-dustyRose-400" />
             <span>{t.common.importData}</span>
             <input
               ref={fileInputRef}
@@ -278,9 +278,9 @@ export function SettingsView() {
       )}
 
       {/* About & Medical Disclaimer */}
-      <div className="p-6 rounded-3xl bg-cream-50/70 dark:bg-charcoal-900 border border-cream-200 dark:border-charcoal-800 shadow-soft text-xs text-charcoal-600 dark:text-charcoal-300 space-y-2.5">
-        <div className="flex items-center space-x-2 text-rose-600 dark:text-rose-400 font-bold">
-          <Heart className="w-4 h-4 fill-rose-500" />
+      <div className="p-6 rounded-3xl bg-ivory-100/70 dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft text-xs text-charcoal-600 dark:text-charcoal-300 space-y-2.5">
+        <div className="flex items-center space-x-2 text-plum-800 dark:text-dustyRose-400 font-bold">
+          <Heart className="w-4 h-4 fill-plum-800 dark:fill-dustyRose-400" />
           <span>{t.common.appName} – {t.common.appSubtitle}</span>
         </div>
         <p className="leading-relaxed">{t.common.disclaimerText}</p>

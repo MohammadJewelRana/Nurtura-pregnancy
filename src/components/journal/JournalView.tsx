@@ -155,7 +155,7 @@ export function JournalView() {
       {/* Title Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900 dark:text-white">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-plum-950 dark:text-white">
             {t.journal.title}
           </h1>
           <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
@@ -166,7 +166,7 @@ export function JournalView() {
         <div className="flex items-center gap-2 self-start sm:self-center">
           <button
             onClick={() => setShowPhotoModal(true)}
-            className="px-4 py-2.5 rounded-2xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-rose-600 dark:text-rose-400 hover:bg-rose-50 text-xs font-semibold flex items-center space-x-1.5 transition"
+            className="px-4 py-2.5 rounded-2xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-plum-800 dark:text-dustyRose-300 hover:bg-ivory-100 text-xs font-semibold flex items-center space-x-1.5 transition"
           >
             <Camera className="w-4 h-4" />
             <span>{t.journal.addPhoto}</span>
@@ -180,7 +180,7 @@ export function JournalView() {
               setEntryDate(toDateString(getTodayDate()));
               setShowEditor(true);
             }}
-            className="px-4 py-2.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft flex items-center space-x-1.5 transition"
+            className="px-4 py-2.5 rounded-2xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle flex items-center space-x-1.5 transition"
           >
             <Plus className="w-4 h-4" />
             <span>{t.journal.newEntry}</span>
@@ -190,10 +190,10 @@ export function JournalView() {
 
       {/* Editor Modal */}
       {showEditor && (
-        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-200 dark:border-charcoal-700 shadow-soft-lg space-y-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1722] border border-plum-200/80 dark:border-plum-800/60 shadow-premium space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-charcoal-900 dark:text-white flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-rose-500" />
+            <h3 className="text-base font-bold text-plum-950 dark:text-white flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
               <span>{editingId ? t.common.edit : t.journal.newEntry}</span>
             </h3>
             <button
@@ -213,7 +213,7 @@ export function JournalView() {
                   placeholder={t.journal.entryTitle}
                   value={entryTitle}
                   onChange={(e) => setEntryTitle(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
               <div>
@@ -222,7 +222,7 @@ export function JournalView() {
                   required
                   value={entryDate}
                   onChange={(e) => setEntryDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
                 />
               </div>
             </div>
@@ -234,7 +234,7 @@ export function JournalView() {
                 placeholder={t.journal.entryContent}
                 value={entryContent}
                 onChange={(e) => setEntryContent(e.target.value)}
-                className="w-full px-4 py-3 rounded-2xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 leading-relaxed"
+                className="w-full px-4 py-3 rounded-2xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400 leading-relaxed"
               />
             </div>
 
@@ -242,13 +242,13 @@ export function JournalView() {
               <button
                 type="button"
                 onClick={() => setShowEditor(false)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-rose-50"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-ivory-100"
               >
                 {t.common.cancel}
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft transition"
+                className="px-5 py-2.5 rounded-xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle transition"
               >
                 {t.journal.saveEntry}
               </button>
@@ -259,10 +259,10 @@ export function JournalView() {
 
       {/* Photo Upload Modal */}
       {showPhotoModal && (
-        <div className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-200 dark:border-charcoal-700 shadow-soft-lg space-y-4">
+        <div className="p-6 rounded-3xl bg-white dark:bg-[#1E1722] border border-plum-200/80 dark:border-plum-800/60 shadow-premium space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-charcoal-900 dark:text-white flex items-center gap-2">
-              <Camera className="w-4 h-4 text-rose-500" />
+            <h3 className="text-base font-bold text-plum-950 dark:text-white flex items-center gap-2">
+              <Camera className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
               <span>{t.journal.addPhoto}</span>
             </h3>
             <button
@@ -285,7 +285,7 @@ export function JournalView() {
                 <select
                   value={photoWeek}
                   onChange={(e) => setPhotoWeek(Number(e.target.value))}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm font-semibold"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-sm font-semibold"
                 >
                   {Array.from({ length: 40 }, (_, i) => i + 1).map((w) => (
                     <option key={w} value={w}>
@@ -304,13 +304,13 @@ export function JournalView() {
                   accept="image/*"
                   required
                   onChange={handlePhotoSelect}
-                  className="w-full text-xs text-charcoal-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-rose-50 file:text-rose-600 hover:file:bg-rose-100"
+                  className="w-full text-xs text-charcoal-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-ivory-100 file:text-plum-800 hover:file:bg-ivory-200"
                 />
               </div>
             </div>
 
             {photoPreview && (
-              <div className="relative w-40 h-40 mx-auto rounded-2xl overflow-hidden border border-rose-200 shadow-sm">
+              <div className="relative w-40 h-40 mx-auto rounded-2xl overflow-hidden border border-[#EFE8DE] shadow-subtle">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
               </div>
@@ -322,12 +322,12 @@ export function JournalView() {
                 placeholder={t.journal.photoCaption}
                 value={photoCaption}
                 onChange={(e) => setPhotoCaption(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400"
+                className="w-full px-4 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-plum-400"
               />
             </div>
 
             <p className="text-[11px] text-charcoal-400 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <ShieldCheck className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />
               <span>{t.journal.photoPrivacyNote}</span>
             </p>
 
@@ -338,13 +338,13 @@ export function JournalView() {
                   setShowPhotoModal(false);
                   setPhotoPreview(null);
                 }}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-rose-50"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-charcoal-500 hover:bg-ivory-100"
               >
                 {t.common.cancel}
               </button>
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-soft transition"
+                className="px-5 py-2.5 rounded-xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle transition"
               >
                 {t.common.save}
               </button>
@@ -354,10 +354,10 @@ export function JournalView() {
       )}
 
       {/* Bump / Memory Photos Gallery */}
-      <div className="p-6 bg-white dark:bg-charcoal-900 rounded-3xl border border-rose-100 dark:border-charcoal-800 shadow-soft">
+      <div className="p-6 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle">
         <div className="flex items-center space-x-2 mb-4">
-          <ImageIcon className="w-5 h-5 text-rose-500" />
-          <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
+          <ImageIcon className="w-5 h-5 text-plum-700 dark:text-dustyRose-400" />
+          <h3 className="text-base font-bold text-plum-950 dark:text-white">
             {t.journal.photoMemories}
           </h3>
         </div>
@@ -367,7 +367,7 @@ export function JournalView() {
             {photos.map((item) => (
               <div
                 key={item.id}
-                className="group relative rounded-2xl overflow-hidden border border-rose-100 dark:border-charcoal-700 shadow-sm bg-rose-50/20"
+                className="group relative rounded-2xl overflow-hidden border border-[#EFE8DE] dark:border-charcoal-700 shadow-subtle bg-ivory-50/60"
               >
                 <div className="aspect-square w-full overflow-hidden bg-charcoal-100 dark:bg-charcoal-800">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -377,8 +377,8 @@ export function JournalView() {
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                   />
                 </div>
-                <div className="p-2.5 bg-white dark:bg-charcoal-900">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 block">
+                <div className="p-2.5 bg-white dark:bg-[#1E1722]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-plum-700 dark:text-dustyRose-400 block">
                     {t.common.week} {formatNumber(item.weekNumber)}
                   </span>
                   {item.caption && (
@@ -398,8 +398,8 @@ export function JournalView() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-6 px-4 rounded-2xl bg-rose-50/20 dark:bg-charcoal-800/30 border border-dashed border-rose-200 dark:border-charcoal-700">
-            <Camera className="w-8 h-8 text-rose-300 mx-auto mb-2" />
+          <div className="text-center py-6 px-4 rounded-2xl bg-ivory-50/50 dark:bg-charcoal-800/30 border border-dashed border-[#EFE8DE] dark:border-charcoal-700">
+            <Camera className="w-7 h-7 text-plum-400 dark:text-dustyRose-400 mx-auto mb-2 opacity-70" />
             <p className="text-xs text-charcoal-500 dark:text-charcoal-400">
               {language === 'bn'
                 ? 'এখনো কোনো ছবি সংরক্ষণ করা হয়নি। আপনার সুন্দর বেবি বাম্পের ছবি যোগ করুন!'
@@ -419,7 +419,7 @@ export function JournalView() {
               placeholder={t.journal.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl border border-rose-200 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-rose-400"
+              className="w-full pl-9 pr-4 py-2 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-plum-400"
             />
           </div>
         </div>
@@ -429,21 +429,21 @@ export function JournalView() {
             {filteredEntries.map((entry) => (
               <div
                 key={entry.id}
-                className="p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-rose-100 dark:border-charcoal-800 shadow-soft flex flex-col justify-between space-y-4"
+                className="p-5 rounded-3xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle flex flex-col justify-between space-y-4"
               >
                 <div>
                   <div className="flex items-center justify-between text-xs text-charcoal-400 mb-2">
-                    <span className="flex items-center gap-1 font-medium text-rose-600 dark:text-rose-400">
+                    <span className="flex items-center gap-1 font-medium text-plum-700 dark:text-dustyRose-400">
                       <Calendar className="w-3.5 h-3.5" />
                       {formatDate(entry.date)}
                     </span>
                     {entry.weekNumber && (
-                      <span className="px-2 py-0.5 rounded-full bg-rose-50 dark:bg-charcoal-800 text-[10px] font-bold text-rose-600">
+                      <span className="px-2 py-0.5 rounded-full bg-plum-50 dark:bg-charcoal-800 text-[10px] font-bold text-plum-800 dark:text-dustyRose-300">
                         {t.common.week} {formatNumber(entry.weekNumber)}
                       </span>
                     )}
                   </div>
-                  <h4 className="text-base font-bold text-charcoal-900 dark:text-white mb-2">
+                  <h4 className="text-base font-bold text-plum-950 dark:text-white mb-2">
                     {entry.title}
                   </h4>
                   <p className="text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 leading-relaxed whitespace-pre-wrap">
@@ -451,10 +451,10 @@ export function JournalView() {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-rose-50 dark:border-charcoal-800 flex justify-end space-x-2">
+                <div className="pt-3 border-t border-[#F2ECE3] dark:border-[#2C2130] flex justify-end space-x-2">
                   <button
                     onClick={() => handleEdit(entry)}
-                    className="p-1.5 rounded-lg text-charcoal-400 hover:text-rose-600 transition"
+                    className="p-1.5 rounded-lg text-charcoal-400 hover:text-plum-700 transition"
                     title={t.common.edit}
                   >
                     <Edit2 className="w-3.5 h-3.5" />
@@ -471,8 +471,8 @@ export function JournalView() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-10 px-4 bg-white dark:bg-charcoal-900 rounded-3xl border border-rose-100 dark:border-charcoal-800 shadow-soft">
-            <BookOpen className="w-10 h-10 text-rose-300 mx-auto mb-2" />
+          <div className="text-center py-10 px-4 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle">
+            <BookOpen className="w-8 h-8 text-plum-400 dark:text-dustyRose-400 mx-auto mb-2 opacity-70" />
             <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 max-w-sm mx-auto">
               {t.journal.noEntries}
             </p>

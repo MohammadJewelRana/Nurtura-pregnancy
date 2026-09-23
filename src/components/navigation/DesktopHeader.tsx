@@ -25,26 +25,26 @@ export function DesktopHeader() {
   ];
 
   return (
-    <header className="hidden md:block sticky top-0 z-40 bg-white/95 dark:bg-charcoal-900/95 backdrop-blur border-b border-rose-100 dark:border-charcoal-800 transition-colors">
-      <div className="max-w-6xl mx-auto px-4 lg:px-6">
+    <header className="hidden md:block sticky top-0 z-40 bg-[#FCF9F6]/95 dark:bg-[#1C151F]/95 backdrop-blur-md border-b border-[#EFE8DE] dark:border-[#2E2432] transition-colors">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo & Title */}
-          <Link href="/" className="flex items-center space-x-2.5 group">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-500 to-rose-400 flex items-center justify-center text-white shadow-soft group-hover:scale-105 transition-transform">
-              <Heart className="w-5 h-5 fill-white" />
+          {/* Brand Emblem */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-plum-800 via-plum-700 to-dustyRose-500 flex items-center justify-center text-white shadow-subtle group-hover:scale-105 transition-transform duration-300">
+              <Heart className="w-4 h-4 fill-white" />
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-rose-600 to-rose-800 dark:from-rose-400 dark:to-rose-300 bg-clip-text text-transparent">
+              <span className="text-lg font-bold tracking-tight text-plum-900 dark:text-plum-100">
                 {t.common.appName}
               </span>
-              <p className="text-[11px] text-charcoal-500 dark:text-charcoal-400 -mt-1 font-normal">
+              <p className="text-[11px] text-charcoal-400 dark:text-charcoal-400 -mt-0.5 tracking-tight font-normal">
                 {t.common.appSubtitle}
               </p>
             </div>
           </Link>
 
-          {/* Desktop Nav Items */}
-          <nav className="flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+          {/* Navigation Links */}
+          <nav className="flex items-center space-x-1 lg:space-x-1.5 text-xs lg:text-sm font-medium">
             {primaryNav.map((item) => {
               const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
               const Icon = item.icon;
@@ -52,21 +52,21 @@ export function DesktopHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center space-x-1.5 px-3 py-2 rounded-xl text-xs lg:text-sm transition-all ${
+                  className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl transition-all duration-200 ${
                     isActive
-                      ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-semibold'
-                      : 'text-charcoal-600 dark:text-charcoal-300 hover:text-rose-600 hover:bg-rose-50/50 dark:hover:bg-charcoal-800'
+                      ? 'bg-plum-100/70 dark:bg-plum-900/40 text-plum-900 dark:text-plum-200 font-semibold shadow-subtle border border-plum-200/50 dark:border-plum-800/40'
+                      : 'text-charcoal-600 dark:text-charcoal-300 hover:text-plum-800 dark:hover:text-plum-200 hover:bg-plum-50/60 dark:hover:bg-plum-950/40'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-plum-700 dark:text-dustyRose-400' : 'text-charcoal-400'}`} />
                   <span>{item.label}</span>
                 </Link>
               );
             })}
           </nav>
 
-          {/* Controls: Language & Theme */}
-          <div className="flex items-center space-x-3">
+          {/* Controls */}
+          <div className="flex items-center space-x-2.5">
             <LanguageSwitcher />
             <ThemeToggle />
           </div>
