@@ -58,9 +58,9 @@ export function ParentJourneyHero() {
                 </div>
               </div>
               <div className="text-center">
-                <span className="block text-xs font-bold text-text-primary tracking-tight max-w-[110px] truncate">
+                {/* <span className="block text-xs font-bold text-text-primary tracking-tight max-w-[110px] truncate">
                   {motherName}
-                </span>
+                </span> */}
                 <span className="block text-[10px] text-emerald font-semibold uppercase tracking-wider">
                   {language === 'bn' ? 'মা' : 'Mother'}
                 </span>
@@ -91,10 +91,10 @@ export function ParentJourneyHero() {
                 </div>
               </div>
               <div className="text-center">
-                <span className="block text-xs font-bold text-text-primary tracking-tight max-w-[110px] truncate">
+                {/* <span className="block text-xs font-bold text-text-primary tracking-tight max-w-[110px] truncate">
                   {fatherName}
-                </span>
-                <span className="block text-[10px] text-text-muted font-semibold uppercase tracking-wider">
+                </span> */}
+            <span className="block text-[10px] text-emerald font-semibold uppercase tracking-wider">
                   {language === 'bn' ? 'বাবা' : 'Father'}
                 </span>
               </div>
