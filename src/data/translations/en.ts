@@ -1,8 +1,8 @@
 export const en = {
   common: {
-    appName: "Motherly",
+    appName: "Nurtura",
     appSubtitle: "Your Pregnancy Companion",
-    loading: "Loading your sanctuary...",
+    loading: "Loading your journey...",
     save: "Save",
     saved: "Saved!",
     cancel: "Cancel",
@@ -37,7 +37,7 @@ export const en = {
     dark: "Dark",
     system: "System",
     disclaimerTitle: "Medical Disclaimer",
-    disclaimerText: "Motherly is an informational pregnancy companion and wellness tracking tool. It does not provide medical diagnoses, treatment, or clinical advice. Always consult your qualified obstetrician, doctor, or midwife for healthcare concerns.",
+    disclaimerText: "Nurtura is an informational pregnancy companion and wellness tracking tool. It does not provide medical diagnoses, treatment, or clinical advice. Always consult your qualified obstetrician, doctor, or midwife for healthcare concerns.",
     localPrivacyBadge: "100% Private & On-Device Storage",
     localPrivacySub: "Your personal pregnancy information never leaves your browser.",
     exportData: "Export My Data (JSON)",
@@ -197,7 +197,7 @@ export const en = {
     weightDate: "Date",
     weightNote: "Optional note",
     weightHistory: "Weight Log History",
-    weightDisclaimer: "Weight changes during pregnancy vary widely based on pre-pregnancy BMI, fluid retention, and genetics. Motherly does not assess weight gain clinically. Discuss any concerns with your doctor.",
+    weightDisclaimer: "Weight changes during pregnancy vary widely based on pre-pregnancy BMI, fluid retention, and genetics. Nurtura does not assess weight gain clinically. Discuss any concerns with your doctor.",
 
     moodTitle: "Mood & Wellness Check-in",
     moodSubtitle: "Reflect on how you are feeling emotionally and physically today.",
@@ -292,8 +292,8 @@ export const en = {
     editDatesBtn: "Edit Pregnancy Dates",
     preferencesSection: "Preferences",
     storageSection: "Data & Privacy Controls",
-    storageExplanation: "All data generated in Motherly is strictly saved on this device. We do not use remote analytics or cloud databases.",
-    aboutSection: "About Motherly",
+    storageExplanation: "All data generated in Nurtura is strictly saved on this device. We do not use remote analytics or cloud databases.",
+    aboutSection: "About Nurtura",
     version: "Version",
     license: "Free & Open Web Companion",
   }

@@ -16,56 +16,56 @@ export function DoctorDateComparisonCard() {
   if (!doctorEdd && !calculatedEdd) return null;
 
   return (
-    <div className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
+    <div className="p-4 sm:p-5 rounded-2xl bg-navy-surface border border-navy-border shadow-soft">
       <div className="flex items-center space-x-2 mb-3">
-        <div className="p-2 rounded-xl bg-sage-50 dark:bg-charcoal-800 text-sage-600 dark:text-sage-400">
+        <div className="p-2 rounded-xl bg-emerald/15 text-emerald">
           <Stethoscope className="w-4 h-4" />
         </div>
-        <h3 className="text-sm font-bold text-charcoal-800 dark:text-charcoal-100">
+        <h3 className="text-sm font-bold text-text-primary">
           {language === 'bn' ? 'প্রসবের সম্ভাব্য তারিখ বিশ্লেষণ' : 'Due Date Calculation Analysis'}
         </h3>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         {/* Doctor/Ultrasound EDD */}
-        <div className={`p-3 rounded-2xl border transition-all ${
+        <div className={`p-3 rounded-xl border transition-all ${
           doctorEdd
-            ? 'bg-sage-50/50 dark:bg-sage-950/20 border-sage-200 dark:border-sage-800/50'
-            : 'bg-ivory-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
+            ? 'bg-emerald/10 border-emerald/30 text-text-primary'
+            : 'bg-navy-elevated border-dashed border-navy-border opacity-60 text-text-muted'
         }`}>
-          <div className="flex items-center justify-between text-charcoal-500 dark:text-charcoal-400 mb-1">
+          <div className="flex items-center justify-between text-text-muted mb-1">
             <span>{t.dashboard.doctorEdd}</span>
-            {isUsingDoctorEdd && <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 dark:text-sage-400" />}
+            {isUsingDoctorEdd && <CheckCircle2 className="w-3.5 h-3.5 text-emerald" />}
           </div>
-          <div className="text-sm font-bold text-charcoal-900 dark:text-white">
+          <div className="text-sm font-bold text-text-primary">
             {doctorEdd ? formatDate(doctorEdd) : (language === 'bn' ? 'প্রদান করা হয়নি' : 'Not entered')}
           </div>
         </div>
 
         {/* Calculated EDD from LMP */}
-        <div className={`p-3 rounded-2xl border transition-all ${
+        <div className={`p-3 rounded-xl border transition-all ${
           calculatedEdd
-            ? 'bg-ivory-50/70 dark:bg-charcoal-800/50 border-plum-100/60 dark:border-charcoal-700'
-            : 'bg-ivory-50 dark:bg-charcoal-800/40 border-dashed border-charcoal-200 dark:border-charcoal-700 opacity-60'
+            ? 'bg-navy-elevated border-navy-border text-text-primary'
+            : 'bg-navy-elevated border-dashed border-navy-border opacity-60 text-text-muted'
         }`}>
-          <div className="flex items-center justify-between text-charcoal-500 dark:text-charcoal-400 mb-1">
+          <div className="flex items-center justify-between text-text-muted mb-1">
             <span>{t.dashboard.calculatedEdd}</span>
             {!isUsingDoctorEdd && calculatedEdd && (
-              <CheckCircle2 className="w-3.5 h-3.5 text-plum-800 dark:text-dustyRose-400" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald" />
             )}
           </div>
-          <div className="text-sm font-bold text-charcoal-900 dark:text-white">
+          <div className="text-sm font-bold text-text-primary">
             {calculatedEdd ? formatDate(calculatedEdd) : (language === 'bn' ? 'LMP অজানা' : 'LMP unknown')}
           </div>
         </div>
 
         {/* Primary Due Date */}
-        <div className="p-3 rounded-2xl bg-plum-50/60 dark:bg-plum-950/30 border border-plum-200 dark:border-plum-800">
-          <div className="flex items-center justify-between text-plum-800 dark:text-dustyRose-300 font-semibold mb-1">
+        <div className="p-3 rounded-xl bg-emerald/15 border border-emerald/50">
+          <div className="flex items-center justify-between text-emerald font-semibold mb-1">
             <span>{t.dashboard.primaryEdd}</span>
             <Calendar className="w-3.5 h-3.5" />
           </div>
-          <div className="text-sm font-extrabold text-plum-900 dark:text-dustyRose-200">
+          <div className="text-sm font-extrabold text-emerald-light">
             {formatDate(primaryEdd)}
           </div>
         </div>
@@ -73,12 +73,12 @@ export function DoctorDateComparisonCard() {
 
       {/* Explanatory note */}
       {isUsingDoctorEdd ? (
-        <div className="mt-3 flex items-start space-x-2 text-[11px] text-sage-700 dark:text-sage-300 bg-sage-50/60 dark:bg-sage-950/30 p-2.5 rounded-xl border border-sage-200 dark:border-sage-800/40">
-          <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-sage-600 dark:text-sage-400" />
+        <div className="mt-3 flex items-start space-x-2 text-[11px] text-text-secondary bg-navy-elevated p-2.5 rounded-xl border border-emerald/30">
+          <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-emerald" />
           <div>
-            <p className="font-medium">{t.dashboard.doctorDateUsedNotice}</p>
+            <p className="font-medium text-emerald">{t.dashboard.doctorDateUsedNotice}</p>
             {datesDiffer && (
-              <p className="text-charcoal-500 dark:text-charcoal-400 mt-0.5">
+              <p className="text-text-muted mt-0.5">
                 {language === 'bn'
                   ? `ডাক্তারের তারিখটি LMP গণনার চেয়ে ${formatNumber(Math.abs(calculation.dateDifferenceDays))} দিন তফাতে রয়েছে।`
                   : `Doctor's scan date differs by ${formatNumber(Math.abs(calculation.dateDifferenceDays))} days from the 280-day LMP calculation.`}
@@ -87,8 +87,8 @@ export function DoctorDateComparisonCard() {
           </div>
         </div>
       ) : (
-        <div className="mt-3 flex items-center space-x-2 text-[11px] text-charcoal-500 dark:text-charcoal-400 bg-ivory-100/60 dark:bg-charcoal-800/40 p-2.5 rounded-xl border border-plum-100/30 dark:border-charcoal-700/50">
-          <Info className="w-4 h-4 flex-shrink-0 text-plum-700 dark:text-dustyRose-400" />
+        <div className="mt-3 flex items-center space-x-2 text-[11px] text-text-secondary bg-navy-elevated p-2.5 rounded-xl border border-navy-border">
+          <Info className="w-4 h-4 flex-shrink-0 text-emerald" />
           <span>
             {language === 'bn'
               ? 'LMP থেকে ২৮০ দিন যোগ করে সম্ভাব্য তারিখ হিসাব করা হয়েছে। ডাক্তার বা আল্ট্রাসাউন্ডের তারিখ পেলে তা সেটিংসে যোগ করতে পারেন।'

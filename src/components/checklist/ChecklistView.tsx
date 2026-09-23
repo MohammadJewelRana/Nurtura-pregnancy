@@ -112,33 +112,33 @@ export function ChecklistView() {
   const hospitalPercent = hospitalBag.length > 0 ? Math.round((completedHospitalCount / hospitalBag.length) * 100) : 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-in fade-in-50 duration-200">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
           {t.checklists.title}
         </h1>
-        <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
+        <p className="text-xs sm:text-sm text-text-muted mt-1">
           {t.checklists.subtitle}
         </p>
       </div>
 
       {/* View Switcher Bar */}
-      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
+      <div className="flex p-1.5 rounded-xl bg-navy-surface border border-navy-border shadow-subtle">
         <button
           onClick={() => {
             setActiveView('trimesters');
             setNewCategory('first-trimester');
           }}
-          className={`flex-1 py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
+          className={`flex-1 py-2 px-4 rounded-lg flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
             activeView === 'trimesters'
-              ? 'bg-plum-900 text-white shadow-soft'
-              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-900 dark:hover:text-white'
+              ? 'bg-emerald text-navy-bg font-bold shadow-subtle'
+              : 'text-text-secondary hover:text-text-primary'
           }`}
         >
           <CheckSquare className="w-4 h-4" />
           <span>{t.checklists.tabTrimesters}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 ml-1">
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy-bg/20 ml-1 font-bold">
             {formatNumber(trimesterPercent)}%
           </span>
         </button>
@@ -148,31 +148,31 @@ export function ChecklistView() {
             setActiveView('hospital');
             setNewCategory('mother');
           }}
-          className={`flex-1 py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
+          className={`flex-1 py-2 px-4 rounded-lg flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition ${
             activeView === 'hospital'
-              ? 'bg-plum-900 text-white shadow-soft'
-              : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-900 dark:hover:text-white'
+              ? 'bg-emerald text-navy-bg font-bold shadow-subtle'
+              : 'text-text-secondary hover:text-text-primary'
           }`}
         >
           <Luggage className="w-4 h-4" />
           <span>{t.checklists.tabHospital}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 ml-1">
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-navy-bg/20 ml-1 font-bold">
             {formatNumber(hospitalPercent)}%
           </span>
         </button>
       </div>
 
       {/* Progress banner */}
-      <div className="p-5 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
-        <div className="flex justify-between items-center text-xs font-semibold text-charcoal-700 dark:text-charcoal-300 mb-2">
+      <div className="p-5 rounded-2xl bg-navy-surface border border-navy-border shadow-premium">
+        <div className="flex justify-between items-center text-xs font-semibold text-text-secondary mb-2">
           <span>{t.checklists.overallProgress}</span>
-          <span className="text-plum-800 dark:text-dustyRose-400 text-sm font-bold">
+          <span className="text-emerald text-sm font-bold">
             {formatNumber(activeView === 'trimesters' ? trimesterPercent : hospitalPercent)}%
           </span>
         </div>
-        <div className="w-full bg-ivory-100 dark:bg-charcoal-800 rounded-full h-2.5 overflow-hidden">
+        <div className="w-full bg-navy-elevated rounded-full h-2 overflow-hidden border border-navy-border">
           <div
-            className="bg-gradient-to-r from-plum-700 via-dustyRose-500 to-champagne-400 h-full rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-emerald-teal to-emerald h-full rounded-full transition-all duration-500 shadow-[0_0_12px_rgba(0,201,154,0.4)]"
             style={{ width: `${activeView === 'trimesters' ? trimesterPercent : hospitalPercent}%` }}
           />
         </div>
@@ -181,7 +181,7 @@ export function ChecklistView() {
       {/* Add Custom Task Form */}
       <form
         onSubmit={handleAddCustom}
-        className="p-4 rounded-2xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 flex flex-col sm:flex-row gap-3 shadow-soft"
+        className="p-4 rounded-xl bg-navy-surface border border-navy-border flex flex-col sm:flex-row gap-3 shadow-subtle"
       >
         <div className="flex-1">
           <input
@@ -190,7 +190,7 @@ export function ChecklistView() {
             placeholder={t.checklists.itemPlaceholder}
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-plum-400"
+            className="w-full px-4 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-xs sm:text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-emerald/40 placeholder:text-text-muted"
           />
         </div>
 
@@ -198,7 +198,7 @@ export function ChecklistView() {
           <select
             value={newCategory}
             onChange={(e) => setNewCategory(e.target.value)}
-            className="px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold text-charcoal-800 dark:text-charcoal-200"
+            className="px-3.5 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-xs font-semibold text-text-primary"
           >
             <option value="first-trimester">{t.common.firstTrimester}</option>
             <option value="second-trimester">{t.common.secondTrimester}</option>
@@ -208,7 +208,7 @@ export function ChecklistView() {
           <select
             value={newCategory}
             onChange={(e) => setNewCategory(e.target.value)}
-            className="px-3.5 py-2.5 rounded-xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs font-semibold text-charcoal-800 dark:text-charcoal-200"
+            className="px-3.5 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-xs font-semibold text-text-primary"
           >
             <option value="mother">{t.checklists.motherBag}</option>
             <option value="baby">{t.checklists.babyBag}</option>
@@ -219,9 +219,9 @@ export function ChecklistView() {
 
         <button
           type="submit"
-          className="px-5 py-2.5 rounded-xl bg-plum-800 hover:bg-plum-900 text-white text-xs font-semibold shadow-soft flex items-center justify-center space-x-1.5 transition"
+          className="px-5 py-2.5 rounded-xl bg-emerald hover:bg-emerald-dark text-navy-bg text-xs font-bold shadow-subtle flex items-center justify-center space-x-1.5 transition"
         >
-          <Plus className="w-3.5 h-3.5" />
+          <Plus className="w-3.5 h-3.5 stroke-[2.5]" />
           <span>{t.checklists.addItem}</span>
         </button>
       </form>
@@ -241,11 +241,11 @@ export function ChecklistView() {
             return (
               <div
                 key={cat}
-                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft"
+                className="p-6 rounded-2xl bg-navy-surface border border-navy-border shadow-premium"
               >
                 <div className="flex items-center space-x-2 mb-4">
-                  <Sparkles className="w-4 h-4 text-champagne-500 dark:text-champagne-400" />
-                  <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
+                  <Sparkles className="w-4 h-4 text-emerald" />
+                  <h3 className="text-base font-bold text-text-primary">
                     {catLabel}
                   </h3>
                 </div>
@@ -255,17 +255,17 @@ export function ChecklistView() {
                     <div
                       key={item.id}
                       onClick={() => toggleChecklist(item.id)}
-                      className={`p-3.5 rounded-2xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
+                      className={`p-3.5 rounded-xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
                         item.isCompleted
-                          ? 'bg-ivory-100/60 dark:bg-charcoal-800/40 border-plum-100/40 dark:border-charcoal-700/60 text-charcoal-400 line-through'
-                          : 'bg-white dark:bg-charcoal-800/80 border-plum-100/60 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-ivory-50/70 dark:hover:bg-charcoal-800'
+                          ? 'bg-navy-elevated/40 border-navy-border/60 text-text-muted line-through'
+                          : 'bg-navy-elevated border-navy-border text-text-primary hover:border-emerald/40'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         {item.isCompleted ? (
-                          <CheckSquare className="w-4 h-4 text-plum-700 dark:text-dustyRose-400 flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-emerald flex-shrink-0" />
                         ) : (
-                          <Square className="w-4 h-4 text-charcoal-400 flex-shrink-0" />
+                          <Square className="w-4 h-4 text-text-muted flex-shrink-0" />
                         )}
                         <span>{language === 'bn' ? item.titleBn : item.titleEn}</span>
                       </div>
@@ -276,7 +276,7 @@ export function ChecklistView() {
                             e.stopPropagation();
                             handleDeleteItem(item.id, false);
                           }}
-                          className="p-1 text-charcoal-400 hover:text-red-500 transition"
+                          className="p-1 text-text-muted hover:text-state-danger transition"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -307,11 +307,11 @@ export function ChecklistView() {
             return (
               <div
                 key={cat}
-                className="p-6 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft"
+                className="p-6 rounded-2xl bg-navy-surface border border-navy-border shadow-premium"
               >
                 <div className="flex items-center space-x-2 mb-4">
-                  <Luggage className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
-                  <h3 className="text-base font-bold text-charcoal-900 dark:text-white">
+                  <Luggage className="w-4 h-4 text-emerald" />
+                  <h3 className="text-base font-bold text-text-primary">
                     {catLabel}
                   </h3>
                 </div>
@@ -321,17 +321,17 @@ export function ChecklistView() {
                     <div
                       key={item.id}
                       onClick={() => toggleHospitalBag(item.id)}
-                      className={`p-3.5 rounded-2xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
+                      className={`p-3.5 rounded-xl border transition cursor-pointer flex items-center justify-between text-xs sm:text-sm ${
                         item.isPacked
-                          ? 'bg-sage-50/50 dark:bg-charcoal-800/40 border-sage-200/60 dark:border-charcoal-700 text-charcoal-400 line-through'
-                          : 'bg-white dark:bg-charcoal-800/80 border-plum-100/60 dark:border-charcoal-700 text-charcoal-800 dark:text-charcoal-100 hover:bg-sage-50/30'
+                          ? 'bg-navy-elevated/40 border-navy-border/60 text-text-muted line-through'
+                          : 'bg-navy-elevated border-navy-border text-text-primary hover:border-emerald/40'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         {item.isPacked ? (
-                          <CheckSquare className="w-4 h-4 text-sage-600 dark:text-sage-400 flex-shrink-0" />
+                          <CheckSquare className="w-4 h-4 text-emerald flex-shrink-0" />
                         ) : (
-                          <Square className="w-4 h-4 text-charcoal-400 flex-shrink-0" />
+                          <Square className="w-4 h-4 text-text-muted flex-shrink-0" />
                         )}
                         <span>{language === 'bn' ? item.titleBn : item.titleEn}</span>
                       </div>
@@ -342,7 +342,7 @@ export function ChecklistView() {
                             e.stopPropagation();
                             handleDeleteItem(item.id, true);
                           }}
-                          className="p-1 text-charcoal-400 hover:text-red-500 transition"
+                          className="p-1 text-text-muted hover:text-state-danger transition"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>

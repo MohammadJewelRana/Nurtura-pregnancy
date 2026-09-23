@@ -7,6 +7,7 @@ import { usePregnancy } from '@/context/PregnancyContext';
 import { PregnancyProfile } from '@/types/pregnancy';
 import { calculatePregnancy } from '@/lib/pregnancy/pregnancy-calculator';
 import { getTodayDate, toDateString, parseLocalDate } from '@/lib/date/date-utils';
+import { NurturaLogo } from '../common/NurturaLogo';
 
 interface SetupFormProps {
   onCompleted?: () => void;
@@ -84,22 +85,22 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
   };
 
   return (
-    <div className={`w-full max-w-xl mx-auto ${isModal ? '' : 'p-6 sm:p-9 bg-white dark:bg-[#1E1722] rounded-3xl shadow-premium border border-[#EFE8DE] dark:border-[#332537]'}`}>
+    <div className={`w-full max-w-xl mx-auto ${isModal ? '' : 'p-6 sm:p-9 bg-navy-surface rounded-2xl shadow-premium border border-navy-border'}`}>
       {/* Title */}
-      <div className="text-center mb-6">
-        <div className="inline-flex p-3 rounded-2xl bg-plum-50 dark:bg-plum-950/50 text-plum-700 dark:text-dustyRose-400 mb-2">
-          <Sparkles className="w-6 h-6" />
+      <div className="text-center mb-6 space-y-2">
+        <div className="flex justify-center">
+          <NurturaLogo size="md" showWordmark={false} />
         </div>
-        <h2 className="text-2xl font-bold text-plum-950 dark:text-white">
+        <h2 className="text-2xl font-black text-text-primary tracking-tight">
           {profile ? t.setup.updateJourney : t.setup.welcomeTitle}
         </h2>
-        <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1 max-w-md mx-auto leading-relaxed">
+        <p className="text-xs sm:text-sm text-text-secondary max-w-md mx-auto leading-relaxed">
           {t.setup.welcomeSubtitle}
         </p>
       </div>
 
       {errorMsg && (
-        <div className="mb-5 p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900 flex items-center space-x-2 text-red-700 dark:text-red-300 text-xs sm:text-sm">
+        <div className="mb-5 p-3.5 rounded-xl bg-state-danger/10 border border-state-danger/30 flex items-center space-x-2 text-state-danger text-xs sm:text-sm">
           <AlertCircle className="w-4 h-4 flex-shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -107,17 +108,17 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
 
       {/* Step 1: "Do you know your due date?" Selector */}
       <div className="mb-6 space-y-2">
-        <label className="block text-xs font-bold text-charcoal-700 dark:text-charcoal-300 uppercase tracking-wider text-center">
+        <label className="block text-xs font-bold text-text-muted uppercase tracking-wider text-center">
           {t.setup.step1Question}
         </label>
-        <div className="grid grid-cols-3 gap-2 p-1 rounded-2xl bg-ivory-100 dark:bg-charcoal-900 border border-ivory-300 dark:border-charcoal-800 text-xs">
+        <div className="grid grid-cols-3 gap-2 p-1 rounded-xl bg-navy-elevated border border-navy-border text-xs">
           <button
             type="button"
             onClick={() => setInputMode('edd')}
-            className={`py-2 px-2 rounded-xl font-semibold transition ${
+            className={`py-2 px-2 rounded-lg font-bold transition ${
               inputMode === 'edd'
-                ? 'bg-plum-700 text-white shadow-subtle'
-                : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-800'
+                ? 'bg-emerald text-navy-bg shadow-subtle'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             {t.setup.step1Yes}
@@ -125,10 +126,10 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
           <button
             type="button"
             onClick={() => setInputMode('lmp')}
-            className={`py-2 px-2 rounded-xl font-semibold transition ${
+            className={`py-2 px-2 rounded-lg font-bold transition ${
               inputMode === 'lmp'
-                ? 'bg-plum-700 text-white shadow-subtle'
-                : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-800'
+                ? 'bg-emerald text-navy-bg shadow-subtle'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             {t.setup.step1No}
@@ -136,10 +137,10 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
           <button
             type="button"
             onClick={() => setInputMode('both')}
-            className={`py-2 px-2 rounded-xl font-semibold transition ${
+            className={`py-2 px-2 rounded-lg font-bold transition ${
               inputMode === 'both'
-                ? 'bg-plum-700 text-white shadow-subtle'
-                : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-800'
+                ? 'bg-emerald text-navy-bg shadow-subtle'
+                : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             {t.setup.step1Both}
@@ -150,7 +151,7 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Mother Name (Optional) */}
         <div>
-          <label className="block text-xs font-semibold text-charcoal-700 dark:text-charcoal-300 uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-semibold text-text-muted uppercase tracking-wider mb-1.5">
             {t.setup.motherNameLabel}
           </label>
           <input
@@ -158,20 +159,20 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
             value={motherName}
             onChange={(e) => setMotherName(e.target.value)}
             placeholder={t.setup.motherNamePlaceholder}
-            className="w-full px-4 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400 transition"
+            className="w-full px-4 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-emerald/40 transition placeholder:text-text-muted"
           />
         </div>
 
         {/* Doctor EDD Field */}
         {(inputMode === 'edd' || inputMode === 'both') && (
-          <div className="p-4 rounded-2xl bg-champagne-50/60 dark:bg-charcoal-900/60 border border-champagne-200/80 dark:border-charcoal-700">
+          <div className="p-4 rounded-xl bg-navy-elevated/70 border border-navy-border">
             <div className="flex items-center space-x-2 mb-1">
-              <Stethoscope className="w-4 h-4 text-champagne-700 dark:text-champagne-400" />
-              <label className="text-xs sm:text-sm font-bold text-plum-950 dark:text-white">
+              <Stethoscope className="w-4 h-4 text-emerald" />
+              <label className="text-xs sm:text-sm font-bold text-text-primary">
                 {t.setup.doctorEddLabel}
               </label>
             </div>
-            <p className="text-[11px] text-charcoal-500 dark:text-charcoal-400 mb-2">
+            <p className="text-[11px] text-text-muted mb-2">
               {t.setup.doctorEddHelp}
             </p>
             <input
@@ -179,21 +180,21 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
               required={inputMode === 'edd'}
               value={doctorEdd}
               onChange={(e) => setDoctorEdd(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-champagne-300/80 dark:border-charcoal-600 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-champagne-400"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-navy-border bg-navy-surface text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-emerald/40"
             />
           </div>
         )}
 
         {/* LMP Field */}
         {(inputMode === 'lmp' || inputMode === 'both') && (
-          <div className="p-4 rounded-2xl bg-ivory-100/90 dark:bg-charcoal-900/60 border border-[#EFE8DE] dark:border-charcoal-700">
+          <div className="p-4 rounded-xl bg-navy-elevated/70 border border-navy-border">
             <div className="flex items-center space-x-2 mb-1">
-              <Calendar className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
-              <label className="text-xs sm:text-sm font-bold text-plum-950 dark:text-white">
+              <Calendar className="w-4 h-4 text-emerald-accent" />
+              <label className="text-xs sm:text-sm font-bold text-text-primary">
                 {t.setup.lmpLabel}
               </label>
             </div>
-            <p className="text-[11px] text-charcoal-500 dark:text-charcoal-400 mb-2">
+            <p className="text-[11px] text-text-muted mb-2">
               {t.setup.lmpHelp}
             </p>
             <input
@@ -202,38 +203,38 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
               required={inputMode === 'lmp'}
               value={lmpDate}
               onChange={(e) => setLmpDate(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl border border-[#EFE8DE] dark:border-charcoal-600 bg-white dark:bg-charcoal-800 text-charcoal-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-plum-400"
+              className="w-full px-3.5 py-2.5 rounded-xl border border-navy-border bg-navy-surface text-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-emerald/40"
             />
           </div>
         )}
 
         {/* Live Calculation Preview Card */}
         {liveCalc && (
-          <div className="p-4 rounded-2xl bg-plum-50/80 dark:bg-plum-950/30 border border-plum-200 dark:border-plum-900 space-y-2.5">
-            <div className="flex items-center justify-between text-xs font-semibold text-plum-900 dark:text-plum-200 uppercase tracking-wide">
+          <div className="p-4 rounded-xl bg-navy-elevated border border-emerald/30 space-y-2.5">
+            <div className="flex items-center justify-between text-xs font-semibold text-emerald uppercase tracking-wide">
               <span>{language === 'bn' ? 'গণনা ও রূপরেখা' : 'Your Pregnancy Preview'}</span>
-              <span className="flex items-center gap-1 text-sage-700 dark:text-sage-400 font-bold">
+              <span className="flex items-center gap-1 text-emerald-accent font-bold">
                 <Check className="w-3.5 h-3.5" /> {language === 'bn' ? 'সঠিক' : 'Ready'}
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs pt-1">
-              <div className="bg-white/90 dark:bg-charcoal-800/90 p-3 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700">
-                <span className="text-charcoal-400 block mb-0.5">{t.dashboard.currentStage}</span>
-                <span className="text-sm font-extrabold text-plum-900 dark:text-white">
+              <div className="bg-navy-surface p-3 rounded-lg border border-navy-border">
+                <span className="text-text-muted block mb-0.5">{t.dashboard.currentStage}</span>
+                <span className="text-sm font-extrabold text-text-primary">
                   {formatNumber(liveCalc.currentWeek)} {t.common.weeks} {formatNumber(liveCalc.currentDay)} {t.common.days}
                 </span>
-                <span className="block text-[10px] text-dustyRose-600 dark:text-dustyRose-400 font-semibold mt-0.5">
+                <span className="block text-[10px] text-emerald font-semibold mt-0.5">
                   {liveCalc.trimesterName}
                 </span>
               </div>
 
-              <div className="bg-white/90 dark:bg-charcoal-800/90 p-3 rounded-xl border border-[#EFE8DE] dark:border-charcoal-700">
-                <span className="text-charcoal-400 block mb-0.5">{t.dashboard.primaryEdd}</span>
-                <span className="text-sm font-extrabold text-plum-900 dark:text-white">
+              <div className="bg-navy-surface p-3 rounded-lg border border-navy-border">
+                <span className="text-text-muted block mb-0.5">{t.dashboard.primaryEdd}</span>
+                <span className="text-sm font-extrabold text-text-primary">
                   {formatDate(liveCalc.primaryEdd)}
                 </span>
-                <span className="block text-[10px] text-charcoal-400 font-medium mt-0.5">
+                <span className="block text-[10px] text-text-muted font-medium mt-0.5">
                   {formatNumber(liveCalc.daysRemaining)} {t.common.daysRemaining}
                 </span>
               </div>
@@ -243,10 +244,10 @@ export function PregnancySetupForm({ onCompleted, isModal = false }: SetupFormPr
 
         <button
           type="submit"
-          className="w-full py-3.5 px-6 rounded-2xl bg-plum-700 hover:bg-plum-800 text-white font-semibold shadow-premium flex items-center justify-center space-x-2 transition transform active:scale-[0.99] mt-2"
+          className="w-full py-3 px-6 rounded-xl bg-emerald hover:bg-emerald-dark text-navy-bg font-bold shadow-glow-emerald flex items-center justify-center space-x-2 transition transform active:scale-[0.99] mt-2"
         >
           <span>{profile ? t.setup.updateJourney : t.setup.startJourney}</span>
-          <ArrowRight className="w-4 h-4" />
+          <ArrowRight className="w-4 h-4 stroke-[2.5]" />
         </button>
       </form>
     </div>

@@ -1,11 +1,11 @@
 {
-  "name": "Motherly – Pregnancy Companion",
-  "short_name": "Motherly",
+  "name": "Nurtura – Pregnancy Companion",
+  "short_name": "Nurtura",
   "description": "Your private, bilingual pregnancy tracker and due date companion.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF8F5",
-  "theme_color": "#DE4A73",
+  "background_color": "#07111F",
+  "theme_color": "#00C99A",
   "orientation": "portrait",
   "icons": [
     {

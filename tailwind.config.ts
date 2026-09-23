@@ -10,105 +10,137 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Sophisticated Dark Navy & Slate Surfaces
+        navy: {
+          bg: '#07111F',          // Main Background
+          secondary: '#0B1626',   // Secondary Background / Sidebar
+          surface: '#0F1C2D',     // Primary Card Surface
+          elevated: '#132235',    // Elevated Cards / Modals / Hover
+          border: '#1D3345',      // 1px Subtle Border
+          subtle: '#263D52',      // Active border / Divider
+        },
+        // Primary Emerald & Teal Palette
+        emerald: {
+          DEFAULT: '#00C99A',
+          primary: '#00C99A',     // Primary Emerald
+          teal: '#00BFA5',        // Primary Teal
+          accent: '#22D3B6',      // Bright Accent Cyan/Teal
+          soft: '#7DE7D2',        // Soft Teal
+          dark: '#009E78',
+          glow: 'rgba(0, 201, 154, 0.15)',
+        },
+        // High-contrast Typography
+        text: {
+          primary: '#F5F8FA',     // 95% Pure White with cool blue tint
+          secondary: '#A7B5C5',   // Crisp Slate
+          muted: '#718197',       // Muted Labels & Timestamps
+        },
+        // Semantic States
+        state: {
+          success: '#65C18C',
+          warning: '#E7B95E',
+          danger: '#E87878',
+        },
+        // Maintain backwards compatibility aliases with dark navy mapping
+        charcoal: {
+          50: '#F5F8FA',
+          100: '#E4ECF4',
+          200: '#C7D6E6',
+          300: '#A7B5C5',
+          400: '#718197',
+          500: '#54667C',
+          600: '#3A4C62',
+          700: '#1D3345',
+          800: '#132235',
+          900: '#0F1C2D',
+          950: '#07111F',
+        },
         plum: {
-          50: '#F9F6F9',
-          100: '#F3ECF3',
-          200: '#E6D8E6',
-          300: '#D2BCD3',
-          400: '#B596B7',
-          500: '#875E8C',
-          600: '#6E4874',
-          700: '#5B405F', // Primary Plum
-          800: '#3F2A43', // Deep Plum
-          900: '#2C1D2F',
-          950: '#1C121E',
+          50: '#F5FBF9',
+          100: '#E2F7F2',
+          200: '#C0F0E4',
+          300: '#7DE7D2',
+          400: '#22D3B6',
+          500: '#00C99A',
+          600: '#00BFA5',
+          700: '#009E78',
+          800: '#132235',
+          900: '#0F1C2D',
+          950: '#07111F',
         },
         dustyRose: {
-          50: '#FAF5F7',
-          100: '#F3E5E9', // Soft Blush
-          200: '#EBD0D9',
-          300: '#DEADC0',
-          400: '#C58A9A', // Dusty Rose
-          500: '#AB6E7F',
-          600: '#8F5364',
-          700: '#754050',
-          800: '#5E313F',
-          900: '#4D2733',
+          50: '#F5FBF9',
+          100: '#E2F7F2',
+          200: '#7DE7D2',
+          300: '#22D3B6',
+          400: '#00C99A',
+          500: '#00BFA5',
+          600: '#009E78',
+          700: '#007F60',
+          800: '#132235',
+          900: '#0F1C2D',
         },
         champagne: {
           50: '#FAF8F2',
           100: '#F6F0E0',
           200: '#ECDEC0',
-          300: '#E0C898',
-          400: '#D8B878', // Warm Champagne / Soft Gold
-          500: '#C7A25A',
-          600: '#A98441',
+          300: '#E7B95E',
+          400: '#E7B95E',
+          500: '#D5A447',
+          600: '#B88732',
           700: '#86642E',
-          800: '#6E5127',
-          900: '#5A4122',
+          800: '#132235',
+          900: '#0F1C2D',
         },
         ivory: {
-          50: '#FDFCFA',
-          100: '#FCF9F6', // Light Warm Ivory
-          200: '#F8F3ED',
-          300: '#EFE7DC',
-          400: '#E2D5C4',
-          500: '#D0BFAB',
+          50: '#0F1C2D',
+          100: '#0B1626',
+          200: '#132235',
+          300: '#1D3345',
+          400: '#718197',
+          500: '#A7B5C5',
         },
         sage: {
-          50: '#F6F8F5',
-          100: '#ECF1EB',
-          200: '#DAE4D8',
-          300: '#C1D3BE',
-          400: '#A8B9A5', // Soft Sage
-          500: '#8B9F87',
-          600: '#6E856A',
-          700: '#576B53',
-          800: '#455542',
-          900: '#394636',
+          50: '#0F1C2D',
+          100: '#132235',
+          200: '#1D3345',
+          300: '#7DE7D2',
+          400: '#00C99A',
+          500: '#00BFA5',
+          600: '#65C18C',
+          700: '#4DA272',
+          800: '#132235',
+          900: '#07111F',
         },
-        charcoal: {
-          50: '#F7F6F7',
-          100: '#ECEBED',
-          200: '#DCD9DD',
-          300: '#BDB7C0',
-          400: '#948D98',
-          500: '#746D78',
-          600: '#574F5B',
-          700: '#433B45',
-          800: '#29242A', // Deep Charcoal with plum undertone
-          900: '#1E1920',
-          950: '#141016',
-        },
-        // Alias rose to dustyRose for backwards compatibility where needed
         rose: {
-          50: '#FAF5F7',
-          100: '#F3E5E9',
-          200: '#EBD0D9',
-          300: '#DEADC0',
-          400: '#C58A9A',
-          500: '#5B405F',
-          600: '#3F2A43',
-          700: '#2C1D2F',
-          800: '#221525',
-          900: '#190E1B',
+          50: '#0F1C2D',
+          100: '#132235',
+          200: '#1D3345',
+          300: '#22D3B6',
+          400: '#00C99A',
+          500: '#00BFA5',
+          600: '#009E78',
+          700: '#007F60',
+          800: '#132235',
+          900: '#07111F',
         },
       },
       fontFamily: {
-        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
-        bangla: ['"Kalpurush"', '"SolaimanLipi"', '"Noto Sans Bengali"', '"Bangla"', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        bangla: ['"Kalpurush"', '"SolaimanLipi"', '"Noto Sans Bengali"', 'sans-serif'],
       },
       borderRadius: {
-        'xl': '0.875rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
         '2xl': '1.25rem',
-        '3xl': '1.75rem',
-        '4xl': '2.25rem',
+        '3xl': '1.5rem',
       },
       boxShadow: {
-        'subtle': '0 2px 10px -1px rgba(63, 42, 67, 0.04), 0 1px 3px 0 rgba(0, 0, 0, 0.02)',
-        'premium': '0 10px 25px -4px rgba(63, 42, 67, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.03)',
-        'glow-gold': '0 0 24px -4px rgba(216, 184, 120, 0.35)',
-        'hero': '0 14px 34px -6px rgba(63, 42, 67, 0.18)',
+        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.4)',
+        'premium': '0 8px 24px -4px rgba(0, 0, 0, 0.5), 0 2px 6px -2px rgba(0, 0, 0, 0.3)',
+        'glow-emerald': '0 0 28px -4px rgba(0, 201, 154, 0.25)',
+        'glow-teal': '0 0 28px -4px rgba(0, 191, 165, 0.3)',
+        'elevated': '0 12px 32px -4px rgba(0, 0, 0, 0.6)',
       }
     },
   },

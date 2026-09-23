@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Footprints, Play, Square, RotateCcw, AlertTriangle, History, Clock } from 'lucide-react';
+import { Footprints, Square, RotateCcw, AlertTriangle, History, Clock, ShieldAlert } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { KickSession } from '@/types/pregnancy';
 import { getSavedKicks, saveKicks } from '@/lib/storage/local-storage';
@@ -18,12 +18,6 @@ export function KickTracker() {
   useEffect(() => {
     setSessions(getSavedKicks());
   }, []);
-
-  const handleStart = () => {
-    setIsRecording(true);
-    setCurrentCount(0);
-    setStartTime(Date.now());
-  };
 
   const handleKick = () => {
     if (!isRecording) {
@@ -71,16 +65,16 @@ export function KickTracker() {
   return (
     <div className="space-y-6">
       {/* Tracker Card */}
-      <div className="p-6 sm:p-8 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle text-center">
+      <div className="p-6 sm:p-8 bg-navy-surface rounded-2xl border border-navy-border shadow-premium text-center">
         <div className="max-w-md mx-auto space-y-4">
-          <div className="inline-flex p-3 rounded-2xl bg-plum-50 dark:bg-plum-950/40 text-plum-700 dark:text-dustyRose-400 mb-1">
+          <div className="inline-flex p-3 rounded-xl bg-navy-elevated border border-navy-border text-emerald mb-1">
             <Footprints className="w-7 h-7" />
           </div>
 
-          <h3 className="text-xl font-bold text-plum-950 dark:text-white">
+          <h3 className="text-xl font-black text-text-primary tracking-tight">
             {t.tracking.kicksTitle}
           </h3>
-          <p className="text-xs text-charcoal-500 dark:text-charcoal-400">
+          <p className="text-xs text-text-muted">
             {t.tracking.kicksSubtitle}
           </p>
 
@@ -89,102 +83,88 @@ export function KickTracker() {
             <motion.button
               whileTap={{ scale: 0.94 }}
               onClick={handleKick}
-              className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full bg-gradient-to-tr from-plum-800 via-plum-700 to-dustyRose-600 text-white shadow-hero flex flex-col items-center justify-center border-4 border-champagne-300/40 dark:border-plum-600/50 focus:outline-none transition-shadow"
+              className="w-36 h-36 sm:w-44 sm:h-44 mx-auto rounded-full bg-gradient-to-tr from-emerald-dark via-emerald to-emerald-accent text-navy-bg shadow-glow-emerald flex flex-col items-center justify-center border-4 border-navy-elevated focus:outline-none transition-shadow"
             >
-              <Footprints className="w-7 h-7 mb-1 opacity-90" />
-              <span className="text-4xl sm:text-5xl font-extrabold tracking-tight">{formatNumber(currentCount)}</span>
-              <span className="text-[11px] font-semibold text-champagne-200 mt-0.5">{t.tracking.kicksCounted}</span>
+              <Footprints className="w-7 h-7 mb-1 opacity-90 stroke-[2.5]" />
+              <span className="text-4xl sm:text-5xl font-black tracking-tight leading-none">{formatNumber(currentCount)}</span>
+              <span className="text-[11px] font-bold text-navy-bg/85 uppercase tracking-wider mt-1">{t.tracking.kicksCounted}</span>
             </motion.button>
-            <p className="text-xs text-charcoal-400 mt-3 font-medium">
+            <p className="text-xs text-text-muted mt-3 font-medium">
               {t.tracking.tapToCount}
             </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="flex items-center justify-center gap-3 pt-2">
-            {!isRecording && currentCount === 0 ? (
-              <button
-                onClick={handleStart}
-                className="px-5 py-2.5 rounded-2xl bg-plum-700 hover:bg-plum-800 text-white text-xs font-semibold shadow-subtle flex items-center space-x-1.5 transition"
-              >
-                <Play className="w-3.5 h-3.5" />
-                <span>{t.tracking.startSession}</span>
-              </button>
-            ) : (
-              <>
-                <button
-                  onClick={handleSaveSession}
-                  className="px-5 py-2.5 rounded-2xl bg-sage-700 hover:bg-sage-800 text-white text-xs font-semibold shadow-subtle flex items-center space-x-1.5 transition"
-                >
-                  <Square className="w-3.5 h-3.5 fill-white" />
-                  <span>{t.tracking.finishSession}</span>
-                </button>
-                <button
-                  onClick={handleReset}
-                  className="px-4 py-2.5 rounded-2xl border border-[#EFE8DE] dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-charcoal-600 dark:text-charcoal-300 hover:bg-ivory-100 text-xs font-medium flex items-center space-x-1 transition"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>{t.tracking.resetCounter}</span>
-                </button>
-              </>
-            )}
+          {/* Control Buttons */}
+          <div className="flex items-center justify-center space-x-3 pt-2">
+            <button
+              onClick={handleSaveSession}
+              disabled={currentCount === 0}
+              className="px-5 py-2.5 rounded-xl bg-emerald hover:bg-emerald-dark text-navy-bg font-bold text-xs shadow-subtle disabled:opacity-40 transition flex items-center space-x-1.5"
+            >
+              <Square className="w-3.5 h-3.5 fill-current" />
+              <span>{t.tracking.finishSession}</span>
+            </button>
+            <button
+              onClick={handleReset}
+              disabled={currentCount === 0}
+              className="px-4 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-text-muted hover:text-text-primary disabled:opacity-40 text-xs font-semibold transition flex items-center space-x-1"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>{t.common.reset}</span>
+            </button>
           </div>
 
-          {/* Today's total summary */}
-          <div className="mt-4 p-3 rounded-2xl bg-ivory-100/80 dark:bg-charcoal-800/60 border border-ivory-300 dark:border-charcoal-700 text-xs text-charcoal-700 dark:text-charcoal-300 flex items-center justify-between">
-            <span>{language === 'bn' ? 'আজকের মোট নড়াচড়া:' : "Today's Total Kicks:"}</span>
-            <span className="font-extrabold text-plum-900 dark:text-champagne-300 text-sm">
-              {formatNumber(todayKicksCount)}
+          {/* Today's total count */}
+          <div className="pt-4 border-t border-navy-border flex items-center justify-between text-xs text-text-secondary">
+            <span>{language === 'bn' ? 'আজকের মোট মুভমেন্ট' : "Today's Total Movements"}:</span>
+            <span className="font-extrabold text-sm text-emerald">
+              {formatNumber(todayKicksCount)} {language === 'bn' ? 'টি' : 'kicks'}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Mandatory Medical Disclaimer Notice */}
-      <div className="p-4 rounded-2xl bg-champagne-50/70 dark:bg-champagne-950/20 border border-champagne-300/60 dark:border-champagne-800/40 flex items-start space-x-3 text-xs text-champagne-950 dark:text-champagne-200">
-        <AlertTriangle className="w-4 h-4 flex-shrink-0 text-champagne-700 dark:text-champagne-400 mt-0.5" />
-        <p className="leading-relaxed">{t.tracking.kickDisclaimer}</p>
+      {/* Medical Safety Disclaimer (Clear guidance for reduced/unusual movement) */}
+      <div className="p-4 sm:p-5 rounded-2xl bg-navy-surface border border-state-warning/40 flex items-start space-x-3 text-xs text-text-secondary">
+        <ShieldAlert className="w-5 h-5 text-state-warning flex-shrink-0 mt-0.5" />
+        <div className="space-y-1">
+          <strong className="text-text-primary block font-bold">
+            {t.common.disclaimerTitle}
+          </strong>
+          <p className="leading-relaxed text-text-muted">
+            {t.tracking.kickDisclaimer}
+          </p>
+        </div>
       </div>
 
       {/* History */}
-      <div className="p-6 bg-white dark:bg-[#1E1722] rounded-3xl border border-[#EFE8DE] dark:border-[#332537] shadow-subtle">
-        <div className="flex items-center space-x-2 mb-4">
-          <History className="w-4 h-4 text-plum-700 dark:text-dustyRose-400" />
-          <h4 className="text-sm font-bold text-plum-950 dark:text-white">
-            {t.tracking.kicksHistory}
-          </h4>
-        </div>
+      {sessions.length > 0 && (
+        <div className="p-6 bg-navy-surface rounded-2xl border border-navy-border shadow-subtle space-y-3">
+          <div className="flex items-center space-x-2 text-xs font-bold text-text-muted uppercase tracking-wider">
+            <History className="w-4 h-4 text-emerald" />
+            <span>{t.tracking.kicksHistory}</span>
+          </div>
 
-        {sessions.length > 0 ? (
-          <div className="divide-y divide-[#F2ECE3] dark:divide-[#2C2130]">
-            {sessions.slice(0, 10).map((session) => (
-              <div key={session.id} className="py-3 flex items-center justify-between text-xs">
+          <div className="divide-y divide-navy-border text-xs">
+            {sessions.slice(0, 5).map((s) => (
+              <div key={s.id} className="py-2.5 flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-plum-950 dark:text-white block">
-                    {formatDate(session.date)}
+                  <span className="font-bold text-text-primary block">
+                    {formatNumber(s.count)} {language === 'bn' ? 'টি নড়াচড়া' : 'movements'}
                   </span>
-                  <span className="text-charcoal-400 text-[11px] flex items-center gap-1 mt-0.5">
-                    <Clock className="w-3 h-3" />
-                    {session.durationMinutes
-                      ? `${formatNumber(session.durationMinutes)} min session`
-                      : 'Quick entry'}
+                  <span className="text-[11px] text-text-muted">
+                    {formatDate(s.date)} • {new Date(s.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
-                <div className="text-right">
-                  <span className="text-sm font-extrabold text-plum-800 dark:text-dustyRose-300">
-                    {formatNumber(session.count)}
-                  </span>
-                  <span className="text-charcoal-400 block text-[10px]">{t.tracking.kicksCounted}</span>
+                <div className="flex items-center space-x-1 text-text-muted text-[11px]">
+                  <Clock className="w-3 h-3 text-emerald" />
+                  <span>{formatNumber(s.durationMinutes ?? 0)} {language === 'bn' ? 'মিনিট' : 'min'}</span>
                 </div>
               </div>
             ))}
           </div>
-        ) : (
-          <p className="text-xs text-charcoal-400 text-center py-4">
-            {t.tracking.noKicksYet}
-          </p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

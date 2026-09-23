@@ -1,15 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#EB7595" />
-      <stop offset="100%" stop-color="#C72F57" />
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F1C2D" />
+      <stop offset="100%" stop-color="#07111F" />
     </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22D3B6" />
+      <stop offset="50%" stop-color="#00C99A" />
+      <stop offset="100%" stop-color="#00BFA5" />
+    </linearGradient>
+    <filter id="emeraldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#00C99A" flood-opacity="0.35" />
+    </filter>
   </defs>
-  <rect width="512" height="512" rx="128" fill="url(#roseGrad)" />
-  <path
-    d="M256 128 C280 80, 360 80, 384 128 C416 192, 336 272, 256 368 C176 272, 96 192, 128 128 C152 80, 232 80, 256 128 Z"
-    fill="#FFFFFF"
-    opacity="0.95"
-  />
-  <circle cx="256" cy="220" r="40" fill="#DE4A73" />
+
+  <!-- Background rounded canvas -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#1D3345" stroke-width="6" />
+
+  <!-- Abstract Maternal Embrace (Mother arc + Baby seed of life) -->
+  <g filter="url(#emeraldGlow)">
+    <!-- Mother Protective Embrace Loop -->
+    <path
+      d="M256 112 C330 112 384 166 384 240 C384 322 308 384 256 416 C204 384 128 322 128 240 C128 174 176 122 238 114"
+      fill="none"
+      stroke="url(#emeraldGrad)"
+      stroke-width="32"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Mother Head / Guidance Dot -->
+    <circle cx="256" cy="174" r="28" fill="url(#emeraldGrad)" />
+
+    <!-- Baby / New Life Nucleus inside the gentle embrace -->
+    <circle cx="256" cy="272" r="38" fill="url(#emeraldGrad)" />
+    <!-- Heart pulse / inner glow spark -->
+    <circle cx="256" cy="272" r="18" fill="#F5F8FA" opacity="0.9" />
+  </g>
 </svg>

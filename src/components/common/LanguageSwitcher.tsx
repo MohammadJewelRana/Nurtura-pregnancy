@@ -8,7 +8,7 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
 
   return (
     <div
-      className={`inline-flex items-center p-0.5 rounded-full bg-ivory-200/80 dark:bg-charcoal-900 border border-ivory-300 dark:border-charcoal-700 text-xs font-semibold ${className}`}
+      className={`inline-flex items-center p-0.5 rounded-full bg-navy-surface border border-navy-border text-xs font-semibold ${className}`}
       role="group"
       aria-label="Language selector"
     >
@@ -17,8 +17,8 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
         onClick={() => setLanguage('en')}
         className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
           language === 'en'
-            ? 'bg-plum-700 text-white shadow-subtle'
-            : 'text-charcoal-600 dark:text-charcoal-300 hover:text-plum-800 dark:hover:text-plum-200'
+            ? 'bg-emerald text-navy-bg font-bold shadow-subtle'
+            : 'text-text-muted hover:text-text-primary'
         }`}
         aria-pressed={language === 'en'}
       >
@@ -29,8 +29,8 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
         onClick={() => setLanguage('bn')}
         className={`px-2.5 py-1 rounded-full transition-all duration-200 font-bangla ${
           language === 'bn'
-            ? 'bg-plum-700 text-white shadow-subtle'
-            : 'text-charcoal-600 dark:text-charcoal-300 hover:text-plum-800 dark:hover:text-plum-200'
+            ? 'bg-emerald text-navy-bg font-bold shadow-subtle'
+            : 'text-text-muted hover:text-text-primary'
         }`}
         aria-pressed={language === 'bn'}
       >

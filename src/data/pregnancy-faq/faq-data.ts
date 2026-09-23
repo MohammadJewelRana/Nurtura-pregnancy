@@ -14,8 +14,8 @@ export const FAQ_DATA: FaqItem[] = [
     category: 'dates',
     questionEn: 'Why might my doctor’s ultrasound due date differ from my LMP calculation?',
     questionBn: 'ডাক্তারের আল্ট্রাসাউন্ডের তারিখ এবং LMP গণনার তারিখের মধ্যে পার্থক্য হয় কেন?',
-    answerEn: 'Ultrasounds (especially first-trimester scans) measure actual crown-rump length and anatomical growth. Because ovulation timing or cycle lengths vary between individuals, an early ultrasound is often more clinically accurate. Motherly prioritizes your doctor’s date when provided.',
-    answerBn: 'প্রথম ট্রাইমেস্টারের আল্ট্রাসাউন্ড সরাসরি ভ্রূণের আকার মেপে সঠিক বয়স নির্ধারণ করে। সবার ওভিউলেশন একই দিনে হয় না বলে আল্ট্রাসাউন্ডের তারিখে কয়েক দিনের তারতম্য হতে পারে। চিকিৎসকেরা আল্ট্রাসাউন্ডের তারিখটিকেই অধিক গ্রহণযোগ্য মনে করেন এবং মাদারলিতেও এটি অগ্রাধিকার পায়।'
+    answerEn: 'Ultrasounds (especially first-trimester scans) measure actual crown-rump length and anatomical growth. Because ovulation timing or cycle lengths vary between individuals, an early ultrasound is often more clinically accurate. Nurtura prioritizes your doctor’s date when provided.',
+    answerBn: 'প্রথম ট্রাইমেস্টারের আল্ট্রাসাউন্ড সরাসরি ভ্রূণের আকার মেপে সঠিক বয়স নির্ধারণ করে। সবার ওভিউলেশন একই দিনে হয় না বলে আল্ট্রাসাউন্ডের তারিখে কয়েক দিনের তারতম্য হতে পারে। চিকিৎসকেরা আল্ট্রাসাউন্ডের তারিখটিকেই অধিক গ্রহণযোগ্য মনে করেন এবং নার্চুরাতেও এটি অগ্রাধিকার পায়।'
   },
   {
     id: 'faq-3',
@@ -54,7 +54,7 @@ export const FAQ_DATA: FaqItem[] = [
     category: 'privacy',
     questionEn: 'Is my personal pregnancy data stored online or shared?',
     questionBn: 'আমার ব্যক্তিগত গর্ভকালীন তথ্য কি ইন্টারনেটে জমা হয় বা কারো সাথে ভাগ করা হয়?',
-    answerEn: 'No. Motherly operates entirely client-side. Your dates, kick counts, weight, journal entries, and bump photos remain strictly stored in your device’s local browser storage. No server accounts or trackers are used.',
-    answerBn: 'একদমই না। মাদারলির যাবতীয় তথ্য আপনার ডিভাইসের ব্রাউজারে সুরক্ষিতভাবে জমা থাকে। কোনো সার্ভারে আপনার কোনো ব্যক্তিগত তথ্য বা ছবি আপলোড করা হয় না।'
+    answerEn: 'No. Nurtura operates entirely client-side. Your dates, kick counts, weight, journal entries, and bump photos remain strictly stored in your device’s local browser storage. No server accounts or trackers are used.',
+    answerBn: 'একদমই না। নার্চুরার (Nurtura) যাবতীয় তথ্য আপনার ডিভাইসের ব্রাউজারে সুরক্ষিতভাবে জমা থাকে। কোনো সার্ভারে আপনার কোনো ব্যক্তিগত তথ্য বা ছবি আপলোড করা হয় না।'
   }
 ];

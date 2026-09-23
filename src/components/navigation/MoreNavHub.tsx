@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {
   BookOpen,
   CheckSquare,
+  Luggage,
   CalendarDays,
   Sparkles,
   HelpCircle,
@@ -15,7 +16,7 @@ import {
 import { useLanguage } from '@/context/LanguageContext';
 
 export function MoreNavHub() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const links = [
     {
@@ -23,53 +24,62 @@ export function MoreNavHub() {
       label: t.nav.journal,
       desc: t.journal.subtitle,
       icon: BookOpen,
-      color: 'text-plum-700 dark:text-dustyRose-300 bg-plum-50 dark:bg-plum-950/40 border-plum-200/50 dark:border-plum-800/40',
-    },
-    {
-      href: '/checklist',
-      label: t.nav.checklists,
-      desc: t.checklists.subtitle,
-      icon: CheckSquare,
-      color: 'text-dustyRose-600 dark:text-dustyRose-300 bg-dustyRose-50 dark:bg-dustyRose-950/40 border-dustyRose-200/50 dark:border-dustyRose-800/40',
+      iconColor: 'text-emerald',
     },
     {
       href: '/appointments',
       label: t.nav.appointments,
       desc: t.appointments.subtitle,
       icon: CalendarDays,
-      color: 'text-sage-700 dark:text-sage-300 bg-sage-50 dark:bg-sage-950/40 border-sage-200/50 dark:border-sage-800/40',
+      iconColor: 'text-emerald-accent',
+    },
+    {
+      href: '/checklist',
+      label: t.nav.checklists,
+      desc: t.checklists.subtitle,
+      icon: CheckSquare,
+      iconColor: 'text-emerald-soft',
+    },
+    {
+      href: '/checklist?tab=hospital',
+      label: t.checklists.tabHospital,
+      desc: language === 'bn' ? 'হাসপাতালের জন্য প্রয়োজনীয় জিনিসপত্রের তালিকা' : 'Complete hospital delivery bag packing list',
+      icon: Luggage,
+      iconColor: 'text-emerald',
     },
     {
       href: '/names',
       label: t.nav.names,
       desc: t.names.subtitle,
       icon: Sparkles,
-      color: 'text-champagne-700 dark:text-champagne-300 bg-champagne-50 dark:bg-champagne-950/40 border-champagne-200/50 dark:border-champagne-800/40',
+      iconColor: 'text-state-warning',
     },
     {
       href: '/faq',
       label: t.nav.faq,
       desc: t.faq.subtitle,
       icon: HelpCircle,
-      color: 'text-charcoal-700 dark:text-charcoal-300 bg-ivory-100 dark:bg-charcoal-900 border-ivory-300 dark:border-charcoal-800',
+      iconColor: 'text-text-secondary',
     },
     {
       href: '/settings',
       label: t.nav.settings,
       desc: t.settings.subtitle,
       icon: Settings,
-      color: 'text-charcoal-700 dark:text-charcoal-300 bg-ivory-100 dark:bg-charcoal-900 border-ivory-300 dark:border-charcoal-800',
+      iconColor: 'text-text-muted',
     },
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-in fade-in-50 duration-200">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-plum-950 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
           {t.nav.more}
         </h1>
-        <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
-          Explore all tools and features of your pregnancy sanctuary.
+        <p className="text-xs sm:text-sm text-text-muted mt-1">
+          {language === 'bn'
+            ? 'আপনার গর্ভকালীন সকল প্রয়োজনীয় ফিচার ও সেটিংস।'
+            : 'Explore all tools and features of your pregnancy companion.'}
         </p>
       </div>
 
@@ -80,30 +90,30 @@ export function MoreNavHub() {
             <Link
               key={item.href}
               href={item.href}
-              className="p-4 sm:p-5 rounded-3xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle hover:shadow-premium flex items-center justify-between group transition-all duration-200"
+              className="p-4 sm:p-5 rounded-2xl bg-navy-surface border border-navy-border shadow-subtle hover:bg-navy-elevated hover:border-emerald/40 flex items-center justify-between group transition-all duration-200"
             >
               <div className="flex items-center space-x-3.5">
-                <div className={`p-2.5 rounded-2xl border ${item.color} group-hover:scale-105 transition-transform duration-200`}>
+                <div className={`p-2.5 rounded-xl bg-navy-elevated border border-navy-border ${item.iconColor} group-hover:scale-105 transition-transform duration-200`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-plum-950 dark:text-white group-hover:text-plum-700 dark:group-hover:text-dustyRose-300 transition-colors">
+                  <h3 className="text-sm font-bold text-text-primary group-hover:text-emerald transition-colors">
                     {item.label}
                   </h3>
-                  <p className="text-xs text-charcoal-400 dark:text-charcoal-400 line-clamp-1 max-w-[200px] mt-0.5">
+                  <p className="text-xs text-text-muted line-clamp-1 max-w-[220px] mt-0.5">
                     {item.desc}
                   </p>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-charcoal-300 group-hover:text-plum-600 dark:group-hover:text-dustyRose-300 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-emerald transition-transform group-hover:translate-x-0.5" />
             </Link>
           );
         })}
       </div>
 
       {/* Safety Badge */}
-      <div className="p-4 rounded-2xl bg-white/60 dark:bg-charcoal-900/40 border border-[#EFE8DE] dark:border-[#332537] flex items-center space-x-3 text-xs text-charcoal-600 dark:text-charcoal-400">
-        <ShieldCheck className="w-4 h-4 text-sage-600 dark:text-sage-400 flex-shrink-0" />
+      <div className="p-4 rounded-xl bg-navy-surface border border-navy-border flex items-center space-x-3 text-xs text-text-secondary">
+        <ShieldCheck className="w-4 h-4 text-emerald flex-shrink-0" />
         <p>{t.common.localPrivacySub}</p>
       </div>
     </div>

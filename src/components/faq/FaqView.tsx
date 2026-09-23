@@ -28,24 +28,24 @@ export function FaqView() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-charcoal-900 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-text-primary tracking-tight">
           {t.faq.title}
         </h1>
-        <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
+        <p className="text-xs sm:text-sm text-text-secondary mt-1">
           {t.faq.subtitle}
         </p>
       </div>
 
       {/* Search Input */}
-      <div className="p-4 rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft">
+      <div className="p-4 rounded-2xl bg-navy-surface border border-navy-border shadow-soft">
         <div className="relative">
-          <Search className="w-4 h-4 text-charcoal-400 absolute left-3.5 top-3" />
+          <Search className="w-4 h-4 text-text-muted absolute left-3.5 top-3" />
           <input
             type="text"
             placeholder={t.faq.searchPlaceholder}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-plum-100 dark:border-charcoal-700 bg-white dark:bg-charcoal-800 text-xs sm:text-sm text-charcoal-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-plum-400"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-navy-border bg-navy-elevated text-xs sm:text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-emerald/60 transition"
           />
         </div>
       </div>
@@ -61,7 +61,7 @@ export function FaqView() {
             return (
               <div
                 key={faq.id}
-                className="rounded-3xl bg-white dark:bg-charcoal-900 border border-plum-100/60 dark:border-charcoal-800 shadow-soft overflow-hidden transition"
+                className="rounded-2xl bg-navy-surface border border-navy-border hover:border-emerald/40 shadow-soft overflow-hidden transition duration-200"
               >
                 <button
                   type="button"
@@ -69,22 +69,22 @@ export function FaqView() {
                   className="w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none"
                 >
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-xl bg-plum-50 dark:bg-plum-950/40 text-plum-700 dark:text-dustyRose-400 flex-shrink-0">
+                    <div className="p-2 rounded-xl bg-emerald/15 text-emerald flex-shrink-0">
                       <HelpCircle className="w-4 h-4" />
                     </div>
-                    <span className="text-sm font-bold text-charcoal-900 dark:text-white">
+                    <span className="text-sm font-bold text-text-primary">
                       {question}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 text-charcoal-400 flex-shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'transform rotate-180 text-plum-700 dark:text-dustyRose-400' : ''
+                    className={`w-4 h-4 text-text-muted flex-shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'transform rotate-180 text-emerald' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 border-t border-plum-50/60 dark:border-charcoal-800 text-xs sm:text-sm text-charcoal-600 dark:text-charcoal-300 leading-relaxed">
+                  <div className="px-5 pb-5 pt-1 border-t border-navy-border/60 text-xs sm:text-sm text-text-secondary leading-relaxed">
                     <p>{answer}</p>
                   </div>
                 )}
@@ -92,18 +92,18 @@ export function FaqView() {
             );
           })
         ) : (
-          <div className="p-8 text-center bg-white dark:bg-charcoal-900 rounded-3xl border border-plum-100/60 dark:border-charcoal-800 shadow-soft text-xs text-charcoal-400">
+          <div className="p-8 text-center bg-navy-surface rounded-2xl border border-navy-border shadow-soft text-xs text-text-muted">
             {t.faq.noResults}
           </div>
         )}
       </div>
 
       {/* Medical Safety Card */}
-      <div className="p-4 sm:p-5 rounded-3xl bg-champagne-50/60 dark:bg-champagne-950/20 border border-champagne-200/70 dark:border-champagne-900/40 flex items-start space-x-3 text-xs text-charcoal-800 dark:text-champagne-200">
-        <ShieldAlert className="w-5 h-5 flex-shrink-0 text-champagne-600 dark:text-champagne-400 mt-0.5" />
+      <div className="p-4 sm:p-5 rounded-2xl bg-state-warning/10 border border-state-warning/30 flex items-start space-x-3 text-xs text-text-secondary">
+        <ShieldAlert className="w-5 h-5 flex-shrink-0 text-state-warning mt-0.5" />
         <div className="space-y-1">
-          <strong className="font-bold block text-plum-900 dark:text-champagne-300">{t.common.disclaimerTitle}</strong>
-          <p className="leading-relaxed text-charcoal-600 dark:text-champagne-200/80">{t.common.disclaimerText}</p>
+          <strong className="font-bold block text-text-primary">{t.common.disclaimerTitle}</strong>
+          <p className="leading-relaxed text-text-secondary">{t.common.disclaimerText}</p>
         </div>
       </div>
     </div>

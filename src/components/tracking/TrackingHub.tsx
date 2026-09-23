@@ -33,19 +33,19 @@ export function TrackingHub() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-in fade-in-50 duration-200">
       {/* Title Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-plum-950 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl font-black text-text-primary tracking-tight">
           {t.tracking.hubTitle}
         </h1>
-        <p className="text-xs sm:text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">
+        <p className="text-xs sm:text-sm text-text-muted mt-1">
           {t.tracking.hubSubtitle}
         </p>
       </div>
 
       {/* Tabs navigation bar */}
-      <div className="flex p-1.5 rounded-2xl bg-white dark:bg-[#1E1722] border border-[#EFE8DE] dark:border-[#332537] shadow-subtle overflow-x-auto">
+      <div className="flex p-1.5 rounded-xl bg-navy-surface border border-navy-border shadow-subtle overflow-x-auto">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -53,10 +53,10 @@ export function TrackingHub() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 min-w-[80px] py-2.5 px-3 rounded-xl flex items-center justify-center space-x-2 text-xs font-semibold transition-all duration-200 ${
+              className={`flex-1 min-w-[80px] py-2 px-3 rounded-lg flex items-center justify-center space-x-2 text-xs font-semibold transition-all duration-200 ${
                 isActive
-                  ? 'bg-plum-700 text-white shadow-subtle'
-                  : 'text-charcoal-600 dark:text-charcoal-400 hover:text-plum-800 hover:bg-ivory-100 dark:hover:bg-charcoal-800'
+                  ? 'bg-emerald text-navy-bg font-bold shadow-subtle'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-navy-elevated'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />

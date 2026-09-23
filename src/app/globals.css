@@ -3,48 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 41, 36, 42;
-  --bg-primary: #FCF9F6;
+  --foreground-rgb: 245, 248, 250;
+  --bg-primary: #07111F;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: #FCF9F6;
+  color: #F5F8FA;
+  background-color: #07111F;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -0.011em;
 }
 
-.dark body {
-  color: #ECEBED;
-  background-color: #17121A;
-}
-
-/* Safe area support for mobile devices */
+/* Safe area support for mobile devices with notches / gesture bars */
 .safe-area-pb {
   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
 }
 
-/* Custom minimal scrollbar */
+/* Custom premium emerald scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #07111F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(91, 64, 95, 0.15);
+  background: #1D3345;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(91, 64, 95, 0.3);
+  background: #00C99A;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(222, 173, 192, 0.2);
+/* Subtle glow utility */
+.glow-emerald-sm {
+  box-shadow: 0 0 16px -2px rgba(0, 201, 154, 0.2);
+}
+
+.glow-emerald-lg {
+  box-shadow: 0 0 32px -4px rgba(0, 201, 154, 0.3);
 }
