@@ -86,7 +86,10 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 2 & 3 & 4. Row 1: Hero Gestational Age Card + Prominent Due Date Countdown Card */}
+      {/* 2. Parent / Family Photo Section (renders near TOP when photos exist) */}
+      <ParentJourneyHero />
+
+      {/* 3 & 4. Row 1: Hero Gestational Age Card + Prominent Due Date Countdown Card */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 items-stretch">
         <PregnancyHeroCard />
         <DueDateCountdownCard />
@@ -102,9 +105,6 @@ export default function HomePage() {
       <div className="pt-1">
         <DashboardQuickActions />
       </div>
-
-      {/* 5. Parent / Family Visual Touch (renders only when parent photos exist) */}
-      <ParentJourneyHero />
 
       {/* 8. Row 4: Discreet Useful Pregnancy Information / Reassurance */}
       <div className="rounded-2xl bg-navy-surface border border-navy-border p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

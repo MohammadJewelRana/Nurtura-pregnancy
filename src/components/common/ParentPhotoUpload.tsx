@@ -1,16 +1,15 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import Image from 'next/image';
 import { Camera, RefreshCw, Trash2, User, Heart, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { compressImage, ParentPhotoType } from '@/lib/storage/parent-photos';
+import { compressImageToBlob, ParentPhotoType } from '@/lib/storage/parent-photos';
 
 interface ParentPhotoUploadProps {
   type: ParentPhotoType;
   label: string;
   photoUrl: string | null;
-  onUpload: (dataUrl: string) => Promise<void>;
+  onUpload: (photo: Blob | string) => Promise<void>;
   onRemove: () => Promise<void>;
   compact?: boolean;
 }
@@ -50,8 +49,8 @@ export function ParentPhotoUpload({
     try {
       setIsProcessing(true);
       // Compress to max 600px width/height and quality 0.85
-      const compressedDataUrl = await compressImage(file, 600, 600, 0.85);
-      await onUpload(compressedDataUrl);
+      const { blob } = await compressImageToBlob(file, 600, 600, 0.85);
+      await onUpload(blob);
     } catch (err) {
       console.warn('[ParentPhotoUpload] Upload error:', err);
       setErrorMessage(

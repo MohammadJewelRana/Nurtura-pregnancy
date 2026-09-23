@@ -24,7 +24,7 @@ interface PregnancyContextProps {
   parentPhotos: ParentPhotosState;
   updateProfile: (profile: PregnancyProfile) => void;
   clearProfile: () => void;
-  updateParentPhoto: (type: ParentPhotoType, dataUrl: string) => Promise<void>;
+  updateParentPhoto: (type: ParentPhotoType, photoInput: Blob | string) => Promise<void>;
   removeParentPhoto: (type: ParentPhotoType) => Promise<void>;
   refreshData: () => void;
 }
@@ -80,14 +80,14 @@ export function PregnancyProvider({ children }: { children: ReactNode }) {
     await clearAllParentPhotos();
   };
 
-  const updateParentPhoto = async (type: ParentPhotoType, dataUrl: string) => {
-    // Immediate optimistic state update
+  const updateParentPhoto = async (type: ParentPhotoType, photoInput: Blob | string) => {
+    // Persist to IndexedDB and get displayable URL
+    const displayUrl = await saveParentPhoto(type, photoInput);
+    // Update React state immediately
     setParentPhotos((prev) => ({
       ...prev,
-      [type]: dataUrl,
+      [type]: displayUrl,
     }));
-    // Persist to IndexedDB
-    await saveParentPhoto(type, dataUrl);
   };
 
   const removeParentPhoto = async (type: ParentPhotoType) => {

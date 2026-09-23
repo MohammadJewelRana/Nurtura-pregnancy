@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Phone, Mail, Sparkles } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { DesktopHeader } from '../navigation/DesktopHeader';
 import { MobileBottomNav } from '../navigation/MobileBottomNav';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
@@ -11,70 +11,31 @@ import { NurturaLogo } from '../common/NurturaLogo';
 import { BrandedSplashScreen } from '../common/BrandedSplashScreen';
 import { NetworkStatusBanner, NetworkBadge } from '../common/NetworkStatusIndicator';
 import { useLanguage } from '@/context/LanguageContext';
-import { usePregnancy } from '@/context/PregnancyContext';
 import { runStorageMigration } from '@/lib/storage/local-storage';
-
-// Module-level guard: ensures splash runs once on initial browser launch/hard refresh
-// and never re-triggers or flickers during client-side route navigation.
-let hasAppInitializedSession = false;
-
-const BRANDING_DURATION_MS = 850;
-const HARD_SAFETY_TIMEOUT_MS = 2500;
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
-  const { isInitialized } = usePregnancy();
-  const [isInitializing, setIsInitializing] = useState<boolean>(() => !hasAppInitializedSession);
+  const [showSplash, setShowSplash] = useState(true);
 
+  // Background local migration: completely decoupled from splash visibility
   useEffect(() => {
-    if (hasAppInitializedSession) {
-      setIsInitializing(false);
-      return;
+    try {
+      runStorageMigration();
+    } catch (err) {
+      console.warn('[Nurtura] Migration error:', err);
     }
-
-    let isMounted = true;
-
-    // Hard safety timeout: guarantees splash ALWAYS dismisses within 2.5s maximum
-    const safetyTimer = setTimeout(() => {
-      hasAppInitializedSession = true;
-      if (isMounted) {
-        setIsInitializing(false);
-      }
-    }, HARD_SAFETY_TIMEOUT_MS);
-
-    const initializeApp = async () => {
-      try {
-        const localTasks = [
-          Promise.resolve().then(() => runStorageMigration()).catch(() => {}),
-        ];
-
-        const brandingTimer = new Promise<void>((resolve) =>
-          setTimeout(resolve, BRANDING_DURATION_MS)
-        );
-
-        // Promise.allSettled guarantees one rejected promise never blocks the app
-        await Promise.allSettled([...localTasks, brandingTimer]);
-      } catch (err) {
-        console.warn('[Nurtura] App init warning:', err);
-      } finally {
-        clearTimeout(safetyTimer);
-        hasAppInitializedSession = true;
-        if (isMounted) {
-          setIsInitializing(false);
-        }
-      }
-    };
-
-    initializeApp();
-
-    return () => {
-      isMounted = false;
-      clearTimeout(safetyTimer);
-    };
   }, []);
 
-  // Single source of truth: display splash screen while initializing
-  if (isInitializing) {
+  // Single authoritative 800ms timer for splash screen
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setShowSplash(false);
+    }, 800);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (showSplash) {
     return <BrandedSplashScreen />;
   }
 
