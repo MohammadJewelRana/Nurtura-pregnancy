@@ -13,6 +13,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Calculator,
+  Scale,
+  Cake,
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { NetworkBadge } from '../common/NetworkStatusIndicator';
@@ -27,6 +29,20 @@ export function MoreNavHub() {
       desc: language === 'bn' ? 'LMP ও আল্ট্রাসাউন্ড হিসাব বিশ্লেষণ' : 'LMP & Ultrasound EDD analysis',
       icon: Calculator,
       iconColor: 'text-emerald',
+    },
+    {
+      href: '/bmi',
+      label: t.nav.bmiCalculator,
+      desc: t.bmi.subtitle,
+      icon: Scale,
+      iconColor: 'text-emerald-accent',
+    },
+    {
+      href: '/age',
+      label: t.nav.ageCalculator,
+      desc: t.ageCalc.subtitle,
+      icon: Cake,
+      iconColor: 'text-emerald-soft',
     },
     {
       href: '/journal',

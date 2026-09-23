@@ -17,6 +17,9 @@ import {
   HelpCircle,
   Settings,
   ChevronDown,
+  Calculator,
+  Scale,
+  Cake,
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
@@ -51,10 +54,13 @@ export function DesktopHeader() {
 
   // Secondary items nested inside "More"
   const secondaryNav = [
+    { href: '/calculator', label: t.nav.setup, icon: Calculator },
+    { href: '/bmi', label: t.nav.bmiCalculator, icon: Scale },
+    { href: '/age', label: t.nav.ageCalculator, icon: Cake },
     { href: '/journal', label: t.nav.journal, icon: BookOpen },
     { href: '/appointments', label: t.nav.appointments, icon: CalendarDays },
     { href: '/checklist', label: t.nav.checklists, icon: CheckSquare },
-    { href: '/checklist?tab=hospital', label: t.checklists.tabHospital, icon: Luggage },
+    { href: '/hospital-bag', label: t.checklists.tabHospital, icon: Luggage },
     { href: '/names', label: t.nav.names, icon: Sparkles },
     { href: '/faq', label: t.nav.faq, icon: HelpCircle },
     { href: '/settings', label: t.nav.settings, icon: Settings },

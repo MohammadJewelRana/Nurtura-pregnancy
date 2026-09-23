@@ -4,6 +4,8 @@ const CACHE_NAME = 'nurtura-cache-v1';
 const PRECACHE_ASSETS = [
   '/',
   '/calculator',
+  '/bmi',
+  '/age',
   '/calendar',
   '/baby',
   '/tracking',
