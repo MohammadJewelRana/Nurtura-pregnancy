@@ -18,11 +18,6 @@ export default function HomePage() {
   const { t, language } = useLanguage();
   const [showSetupForm, setShowSetupForm] = useState(false);
 
-  // If still initializing, the global BrandedSplashScreen in AppLayout handles the presentation
-  if (!isInitialized) {
-    return null;
-  }
-
   // If user has not set pregnancy dates yet
   if (!calculation.isValid) {
     return (

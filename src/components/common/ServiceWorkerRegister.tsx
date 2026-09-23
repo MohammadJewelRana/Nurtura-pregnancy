@@ -43,20 +43,20 @@ export function ServiceWorkerRegister() {
             console.warn('[PWA] Service worker registration error:', err);
           });
 
-        // Reload page once new service worker takes control
-        let refreshing = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (!refreshing) {
-            refreshing = true;
-            window.location.reload();
-          }
-        });
+        // Listen for new service worker controlling page ONLY when user requested update
       });
     }
   }, []);
 
   const handleUpdate = () => {
     if (waitingWorker) {
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
       waitingWorker.postMessage({ type: 'SKIP_WAITING' });
     }
     setShowUpdatePrompt(false);

@@ -21,9 +21,14 @@ export function PregnancyProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const loadData = useCallback(() => {
-    const saved = getSavedProfile();
-    setProfile(saved);
-    setIsInitialized(true);
+    try {
+      const saved = getSavedProfile();
+      setProfile(saved);
+    } catch (err) {
+      console.warn('[PregnancyContext] Load profile error:', err);
+    } finally {
+      setIsInitialized(true);
+    }
   }, []);
 
   useEffect(() => {

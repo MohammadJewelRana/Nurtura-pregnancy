@@ -19,8 +19,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-navy-bg text-text-primary transition-colors">
-      {/* Branded Splash Screen during client-side hydration / storage initialization */}
-      <BrandedSplashScreen isLoading={!isInitialized} />
+      {/* Branded Splash Screen with guaranteed 800ms auto-transition and safety fallback */}
+      <BrandedSplashScreen />
 
       {/* Network Offline / Back Online Toast Banner */}
       <NetworkStatusBanner />
